@@ -27,7 +27,7 @@
 /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python tools/apply_photo_faces.py -- --config art/photo-faces.json
 ```
 
-默认输出到工作目录的 `work/photo-model-preview/`。可指定 `--output-dir`，或 `--only huaqiang` 只处理一位。检查完成后，加 `--write-assets` 更新游戏内三份 GLB。其他系统使用自己的 Blender 可执行文件运行同一脚本。
+默认输出到仓库内的 `work/photo-model-preview/`，该临时目录已从 Git 跟踪中排除。可指定 `--output-dir`，或 `--only huaqiang` 只处理一位。检查完成后，加 `--write-assets` 更新游戏内三份 GLB。其他系统使用自己的 Blender 可执行文件运行同一脚本。
 
 重新运行旧人物生成工具会恢复原来的风格化脸；随后重跑照片工具即可恢复照片版。原 `.blend` 文件保留风格化身体和头部基础，照片曲面由脚本与测量配置复现。
 

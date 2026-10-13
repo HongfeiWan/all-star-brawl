@@ -24,7 +24,7 @@ ORIGINAL_MATERIALS = {name: getattr(F, name) for name in ('skin', 'aged', 'beard
 import make_roster as R
 
 ROOT = Path(__file__).resolve().parents[1]
-PREVIEW = ROOT.parents[1] / 'work' / 'photo-model-preview'
+PREVIEW = ROOT / 'work' / 'photo-model-preview'
 IDENTIFIERS = ('ikun', 'huaqiang', 'guatan')
 EXPRESSIONS = ('blink', 'angry', 'smile', 'hurt')
 REMOVE_FACE = ('Integrated eye socket', 'Almond eye', 'Dark iris', 'Eye catchlight',
