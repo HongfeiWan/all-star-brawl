@@ -195,11 +195,11 @@ function setViewmodel(character) {
   if (offhandWeapon) hands[0].add(offhandWeapon);
   const palette = CHARACTERS[character].visual || CHARACTERS[character].appearance;
   const skinColor = new THREE.Color(palette.skinColor);
-  if (CHARACTERS[character].visual) skinColor.convertLinearToSRGB();
+  if (CHARACTERS[character].visual && palette.colorSpace !== 'srgb') skinColor.convertLinearToSRGB();
   for (const hand of hands) {
     hand.userData.sleeve.material.color.set(palette.bodyColor);
     hand.userData.cuff.material.color.set(palette.trimColor);
-    if (CHARACTERS[character].visual) {
+    if (CHARACTERS[character].visual && palette.colorSpace !== 'srgb') {
       hand.userData.sleeve.material.color.convertLinearToSRGB();
       hand.userData.cuff.material.color.convertLinearToSRGB();
     }
@@ -223,7 +223,11 @@ function actor(character) {
   const morphs = [], bones = new Map();
   model.traverse(obj => {
     if (obj.morphTargetDictionary) morphs.push(obj);
-    if (obj.isBone) bones.set(obj.name.toLowerCase(), obj);
+    if (obj.isBone) {
+      bones.set(obj.name.toLowerCase(), obj);
+      const limb = obj.name.match(/^(upper|forearm|hand|thigh|shin|foot)([LR])$/i);
+      if (limb) bones.set(`${limb[1].toLowerCase()}.${limb[2].toLowerCase()}`, obj);
+    }
   });
   const instance = { group, mixer, clips, morphs, bones, active: null, character, motion: null, fading: null, fadeRemaining: 0, hitAt: -Infinity, hitStrength: 0, nextBlink: performance.now() + 2600 + Math.random() * 1800, blinkAt: -Infinity, glance: 0 };
   mixer.addEventListener('finished', ({ action }) => {
@@ -260,6 +264,7 @@ function play(instance, name, duration) {
   next.play();
   instance.active = next;
   instance.activeName = name;
+  instance.previewMotion = null;
 }
 
 function hitStop(event) {
@@ -274,7 +279,15 @@ function updateActor(instance, dt, frameTime) {
     instance.pendingHurtAt = null;
     if (!instance.guarding && !instance.motion) play(instance, 'hurt', .44);
   }
+  const previewMotion = instance.previewMotion;
   instance.mixer.update(dt);
+  if (previewMotion?.action === instance.active) {
+    const motion = previewMotion;
+    const elapsed = Math.max(0, frameTime - motion.started) / 1000;
+    motion.action.time = motion.action.getClip().duration * Math.min(1, elapsed / motion.duration);
+    instance.mixer.update(0);
+    if (elapsed >= motion.duration) play(instance, 'idle');
+  }
   if (instance.motion && instance.active) {
     const elapsed = motionTime(instance.motion);
     if (elapsed < TIMING.slot) {
@@ -327,6 +340,21 @@ function updateExpression(instance, dt, frameTime) {
   if (reducedMotion || !instance.active) return;
   const head = instance.bones.get('head'), spine = instance.bones.get('spine');
   const idle = instance.activeName === 'idle';
+  const temperament = CHARACTERS[instance.character].visual?.temperament;
+  if (idle && temperament) {
+    // The clip evaluates first each frame, so these small gestures do not accumulate.
+    const tension = Math.max(expressions.angry, lowHp * .55);
+    const breath = Math.sin(frameTime / (temperament === 'buoyant' ? 390 : 610));
+    if (head) {
+      head.rotation.x += (temperament === 'stern' ? .012 : temperament === 'shy' ? .025 : -.008) + breath * .003;
+      head.rotation.z += (temperament === 'alert' ? .015 : .004) * Math.sin(frameTime / 1700);
+      head.rotation.y += tension * .011 * Math.sin(frameTime / 530);
+    }
+    const shoulder = instance.bones.get('upper.l');
+    if (shoulder) shoulder.rotation.z += tension * .016;
+    const hand = instance.bones.get('hand.l');
+    if (hand) hand.rotation.z += tension * .024 * (.75 + breath * .25);
+  }
   if (instance === opponent && head && idle) {
     const planning = room?.stage === 'plan';
     const glanceTarget = planning && Math.floor(frameTime / 2400) % 3 === 0 ? -.055 : 0;
@@ -972,6 +1000,9 @@ $('close-roster').addEventListener('click', () => $('roster-dialog').close());
 function previewMove() {
   const action = $('preview-action')?.value || 'special';
   play(previewActor, action, ['idle', 'victory'].includes(action) ? undefined : TIMING.slot / 1000);
+  if (previewActor && !['idle', 'victory'].includes(action)) {
+    previewActor.previewMotion = { action: previewActor.active, started: performance.now(), duration: TIMING.slot / 1000 };
+  }
 }
 $('preview-move').addEventListener('click', previewMove);
 $('preview-action')?.addEventListener('change', previewMove);

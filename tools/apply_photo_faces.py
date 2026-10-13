@@ -247,31 +247,33 @@ def build(identifier, spec, output_dir, roster):
         for name, material in ORIGINAL_MATERIALS.items():
             setattr(F, name, material)
         F.base(identifier)
+        gear = [obj for obj in F.parts if obj.name.startswith('Basketball')]
         F.loft, F.ellipsoid, F.tube, F.curved = R.low_loft, R.low_ellipsoid, R.low_tube, R.low_curved
     else:
         config = R.configuration(roster[identifier])
         mats = R.palette(identifier, config)
         R.body(config, mats, R.seed_for(identifier))
         R.head(config, mats, R.seed_for(identifier))
+        before_weapon = set(F.parts)
         R.weapon(config, mats)
+        R.D.prop_details(config, mats)
+        gear = [obj for obj in F.parts if obj not in before_weapon]
     landmarks = add_photo_face(identifier, spec, image)
-    bpy.ops.object.select_all(action='DESELECT')
-    for obj in F.parts:
-        obj.select_set(True)
-    bpy.context.view_layer.objects.active = F.parts[0]
-    bpy.ops.object.join()
-    body = bpy.context.object
-    body.name = identifier + '_body'
+    meshes = R.D.assemble(identifier, gear, facial_controls=False)
+    body = next(mesh for mesh in meshes if mesh.name.endswith('_face'))
     add_expressions(body, landmarks)
-    body['photoFaceVersion'] = 'v0.3-experiment'
+    body['photoFaceVersion'] = 'v0.4-experiment'
     armature = F.rig(identifier)
-    body.modifiers.new('Skeleton', 'ARMATURE').object = armature
-    body.parent = armature
+    for mesh in meshes:
+        R.D.skin_weights(mesh)
+        mesh.modifiers.new('Skeleton', 'ARMATURE').object = armature
+        mesh.parent = armature
     if identifier == 'ikun':
         F.animate(armature, identifier)
     bpy.context.scene.frame_set(0)
     bpy.ops.object.select_all(action='DESELECT')
-    body.select_set(True)
+    for mesh in meshes:
+        mesh.select_set(True)
     armature.select_set(True)
     bpy.context.view_layer.objects.active = armature
     path = output_dir / (identifier + '.glb')
@@ -279,17 +281,21 @@ def build(identifier, spec, output_dir, roster):
                               export_animations=identifier == 'ikun', export_animation_mode='NLA_TRACKS',
                               export_force_sampling=True, export_nla_strips=True, export_skins=True,
                               export_morph=True, export_morph_normal=False, export_extras=True)
-    body.data.calc_loop_triangles()
-    assert len(body.data.loop_triangles) < (80000 if identifier == 'ikun' else 30000), 'Photo face exceeded the geometry budget'
+    triangles = 0
+    for mesh in meshes:
+        mesh.data.calc_loop_triangles()
+        triangles += len(mesh.data.loop_triangles)
+    assert triangles < 80000, 'Photo face exceeded the geometry budget'
     blob = path.read_bytes()
     gltf = json.loads(blob[20:20 + struct.unpack_from('<I', blob, 12)[0]])
     assert len(blob) < 5 * 1024 * 1024, 'Photo model exceeds the LAN file budget'
     assert len(gltf['skins'][0]['joints']) == 16
     assert len(gltf.get('animations', [])) == (7 if identifier == 'ikun' else 0)
     assert len(gltf.get('images', [])) == 1 and 'bufferView' in gltf['images'][0] and 'uri' not in gltf['images'][0], 'Photo must be embedded for offline play'
-    assert all(name in gltf['meshes'][0]['extras']['targetNames'] for name in EXPRESSIONS)
-    assert any('TEXCOORD_0' in primitive['attributes'] for primitive in gltf['meshes'][0]['primitives'])
-    print('PHOTO_FACE', identifier, image.size[:], len(body.data.loop_triangles), len(blob), path, flush=True)
+    face = next(mesh for mesh in gltf['meshes'] if 'blink' in mesh.get('extras', {}).get('targetNames', []))
+    assert all(name in face['extras']['targetNames'] for name in EXPRESSIONS)
+    assert any('TEXCOORD_0' in primitive['attributes'] for primitive in face['primitives'])
+    print('PHOTO_FACE', identifier, image.size[:], triangles, len(blob), path, flush=True)
     return path
 
 

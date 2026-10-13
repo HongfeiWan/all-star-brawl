@@ -103,6 +103,20 @@ test('every character has a facial rig within the browser budget and all motion 
       checkClips(model, id);
       continue;
     }
+    assert.ok(gltf.meshes.some(mesh => mesh.name === `${id}_cloth`), `${id} clothing stays separate from the face`);
+    assert.ok(gltf.meshes.some(mesh => mesh.name === `${id}_props`), `${id} equipment stays separate from clothing`);
+    let blendedVertices = 0;
+    for (const mesh of gltf.meshes) {
+      for (const primitive of mesh.primitives) {
+        const weights = values(model, primitive.attributes.WEIGHTS_0);
+        for (const sample of weights) {
+          assert.ok(sample.every(Number.isFinite) && sample.every(weight => weight >= 0), `${id} valid exported skin weights`);
+          assert.ok(Math.abs(sample.reduce((sum, weight) => sum + weight, 0) - 1) < .0001, `${id} normalized skin weights`);
+          if (sample.filter(weight => weight > .001).length > 1) blendedVertices++;
+        }
+      }
+    }
+    assert.ok(blendedVertices > 20, `${id} needs smooth joint weights instead of rigid limb pieces`);
     assert.equal(gltf.animations?.length || 0, 0, `${id} should share a motion family instead of duplicating animation data`);
     if (!motionFiles.has(character.motion)) {
       const motion = await readGLB(`/assets/motions/${character.motion}.glb`);

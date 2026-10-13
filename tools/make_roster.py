@@ -21,6 +21,7 @@ from mathutils import Matrix, Vector
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.dont_write_bytecode = True
 import make_characters as F
+import refine_roster as D
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'public' / 'assets' / 'roster'
@@ -38,19 +39,19 @@ ORIGINAL_FUNCTIONS = {name: getattr(F, name) for name in ('loft', 'ellipsoid', '
 
 
 def low_loft(name, rings, mat, bone, segments=24):
-    return ORIGINAL_FUNCTIONS['loft'](name, rings, mat, bone, min(segments, 20))
+    return ORIGINAL_FUNCTIONS['loft'](name, rings, mat, bone, min(segments, 40))
 
 
 def low_ellipsoid(name, center, scale, mat, bone, segments=24, rings=14):
-    return ORIGINAL_FUNCTIONS['ellipsoid'](name, center, scale, mat, bone, min(segments, 16), min(rings, 9))
+    return ORIGINAL_FUNCTIONS['ellipsoid'](name, center, scale, mat, bone, min(segments, 28), min(rings, 16))
 
 
 def low_tube(name, points, radii, mat, bone, segments=10):
-    return ORIGINAL_FUNCTIONS['tube'](name, points, radii, mat, bone, min(segments, 8))
+    return ORIGINAL_FUNCTIONS['tube'](name, points, radii, mat, bone, min(segments, 16))
 
 
 def low_curved(name, control, radius, mat, bone, count=20, segments=8):
-    return ORIGINAL_FUNCTIONS['curved'](name, control, radius, mat, bone, min(count, 14), min(segments, 6))
+    return ORIGINAL_FUNCTIONS['curved'](name, control, radius, mat, bone, min(count, 24), min(segments, 10))
 
 
 F.loft, F.ellipsoid, F.tube, F.curved = low_loft, low_ellipsoid, low_tube, low_curved
@@ -150,21 +151,26 @@ def configuration(item):
     result.update(CORE.get(item['id'], {}))
     if item['id'] in ('guodegang', 'yuqian'):
         result['fanStyle'] = 'folding'
+    result.update(D.PROFILES[item['id']])
     result.setdefault('outfit', result.get('body', 'jacket'))
     result.setdefault('hair', 'short')
     result.setdefault('weaponType', 'fist')
     result.setdefault('build', 'regular')
+    result.setdefault('pantsColor', result['primary'] if result['outfit'] in ('suit', 'uniform', 'tracksuit', 'armor', 'robe', 'coat') else '#384552')
     return result
 
 
 def palette(identifier, config):
-    primary = rgb(config.get('primary'), (.19, .24, .32))
-    secondary = rgb(config.get('secondary'), (.54, .58, .61))
-    skin_color = rgb(config.get('skin'), (.68, .41, .28))
-    hair_color = rgb(config.get('hairColor'), (.025, .025, .034))
+    def linear(value, fallback):
+        return tuple(v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4 for v in rgb(value, fallback))
+    primary = linear(config.get('primary'), (.19, .24, .32))
+    secondary = linear(config.get('secondary'), (.54, .58, .61))
+    skin_color = linear(config.get('skin'), (.68, .41, .28))
+    hair_color = linear(config.get('hairColor'), (.025, .025, .034))
     skin = F.material(identifier + ' · face skin', skin_color, roughness=.72)
     F.skin, F.aged = skin, skin
     return {'main': F.material(identifier + ' · garment', primary, roughness=.92),
+            'pants': F.material(identifier + ' · trouser fabric', linear(config['pantsColor'], (.18, .23, .28)), roughness=.94),
             'trim': F.material(identifier + ' · panels and trim', secondary, roughness=.87),
             'skin': skin, 'hair': F.material(identifier + ' · sculpted hair', hair_color, roughness=.81),
             'dark': F.cloth, 'white': F.ivory, 'metal': F.steel, 'bright': F.steelbright,
@@ -175,12 +181,13 @@ def visual_metadata(item):
     """Expose the authored model overrides to first-person hands and equipment."""
     config = configuration(item)
     output = {'weaponType': config['weaponType'],
+              'colorSpace': 'srgb',
               'bodyColor': config.get('primary', '#303d52'),
               'trimColor': config.get('secondary', '#8a949c'),
               'hairColor': config.get('hairColor', '#060609'),
               'skinColor': config.get('skin', '#ad6947'),
               'outfit': config['outfit'], 'hair': config['hair'], 'build': config['build']}
-    for field in ('headwear', 'accessory', 'beard', 'age', 'face', 'female', 'gloves', 'fanStyle'):
+    for field in ('headwear', 'accessory', 'beard', 'age', 'face', 'female', 'gloves', 'fanStyle', 'temperament', 'referenceCue'):
         if field in config:
             output[field] = config[field]
     return output
@@ -196,7 +203,7 @@ def body(config, mats, seed):
     F.loft('Torso · shaped chest and waist', [(0, .022, 1.03, .255 * width, .16), (0, .013, 1.18, .258 * width, .17),
                                            (0, .007, 1.40, .30 * width, .19), (0, .014, 1.56, .333 * width, .19),
                                            (0, .021, 1.66, .30 * width, .166), (0, .02, 1.69, .205 * width, .12)], top, 'spine')
-    F.loft('Waistband', [(0, .015, .96, .24 * width, .16), (0, .012, 1.11, .25 * width, .165)], mats['trim'], 'hips')
+    F.loft('Waistband', [(0, .015, .96, .24 * width, .16), (0, .012, 1.11, .25 * width, .165)], mats['pants'], 'hips')
     for sign, side in [(1, 'L'), (-1, 'R')]:
         arm, forearm = 'upper.' + side, 'forearm.' + side
         sleeve = mats['skin'] if bare else mats['main']
@@ -208,10 +215,10 @@ def body(config, mats, seed):
                [.083 * width, .08 * width, .054], mats['skin'] if bare or outfit in ('school', 'shirt', 'suspenders') else sleeve, forearm)
         F.hand(side, sign, 'ikun')
         F.tube('Trouser thigh.' + side, [(sign * .17, .026, 1.0), (sign * .183, .026, .80), (sign * .19, 0, .54)],
-               [.14 * width, .12 * width, .094], mats['trim'], 'thigh.' + side)
-        F.ellipsoid('Knee.' + side, (sign * .19, .0, .54), (.099, .10, .097), mats['trim'], 'shin.' + side)
+               [.14 * width, .12 * width, .094], mats['pants'], 'thigh.' + side)
+        F.ellipsoid('Knee.' + side, (sign * .19, .0, .54), (.095, .097, .075), mats['pants'], 'shin.' + side)
         F.tube('Trouser shin.' + side, [(sign * .19, 0, .54), (sign * .19, .012, .35), (sign * .19, .012, .145)],
-               [.095, .085, .065], mats['trim'], 'shin.' + side)
+               [.095, .085, .065], mats['pants'], 'shin.' + side)
         F.ellipsoid('Toe and boot.' + side, (sign * .19, -.083, .104), (.101, .17, .085), mats['dark'], 'foot.' + side)
         F.slab('Heel and sole.' + side, (sign * .19, -.073, .043), (.103, .16, .024), mats['dark'], 'foot.' + side, .008)
         if outfit in ('uniform', 'police', 'military', 'cook'):
@@ -316,6 +323,7 @@ def body(config, mats, seed):
         for sign, side in [(1, 'L'), (-1, 'R')]:
             F.ellipsoid('Clown oversized shoe.' + side, (sign * .19, -.125, .103), (.145, .26, .088), mats['trim'], 'foot.' + side)
             F.leaf('Clown collar point', (sign * .02, -.12, 1.68), (sign * .23, -.19, 1.53), .072, mats['white'], 'spine', .01)
+    D.clothing(config, mats, width)
 
 
 def head(config, mats, seed):
@@ -365,11 +373,8 @@ def head(config, mats, seed):
                     for v in obj.data.vertices:
                         v.co.x *= 1.27
     # Coherent individual proportions alter the cranium and all attached features.
-    x_scale = (.94 + .10 * ((seed >> 1) % 23) / 22) * (.94 if config.get('female') else 1)
-    if config.get('face') == 'round':
-        x_scale *= 1.08
-    z_scale = .96 + .08 * ((seed >> 9) % 17) / 16
-    nose_scale = .90 + .20 * ((seed >> 6) % 11) / 10
+    # Stable authored anatomy replaces hash-based likeness variation.
+    x_scale, z_scale, nose_scale = 1, 1, 1
     for obj in F.parts:
         if any(g.name == 'head' for g in obj.vertex_groups):
             for v in obj.data.vertices:
@@ -500,6 +505,7 @@ def head(config, mats, seed):
     if accessory == 'scarf':
         F.loft('Neck scarf folds', [(0, .026, 1.685, .128, .132), (0, .026, 1.759, .13, .137)], mats['trim'], 'spine')
         F.leaf('Scarf hanging panel', (.064, -.131, 1.714), (.15, -.205, 1.36), .063, mats['trim'], 'spine', .012)
+    D.face_and_hair(config, mats)
 
 
 def weapon(config, mats):
@@ -775,7 +781,7 @@ def animate(armature, family):
     durations = {'idle': 200, 'attack': 145, 'heavy': 145, 'guard': 145, 'special': 145, 'hurt': 90, 'victory': 200}
     armature.animation_data_create()
     for name, frames in durations.items():
-        action = bpy.data.actions.new(name)
+        action = bpy.data.actions.new('AN_shared_' + family + '_' + name)
         armature.animation_data.action = action
         times = {i / frames for i in range(frames + 1)} | {CONTACT}
         for t in sorted(times):
@@ -790,7 +796,8 @@ def animate(armature, family):
                     if bag:
                         for curve in bag.fcurves:
                             for key in curve.keyframe_points:
-                                key.interpolation = 'LINEAR'
+                                key.interpolation = 'BEZIER'
+                                key.handle_left_type = key.handle_right_type = 'AUTO_CLAMPED'
         track = armature.animation_data.nla_tracks.new()
         track.name = name
         strip = track.strips.new(name, 0, action)
@@ -843,34 +850,33 @@ def make_character(item, save_blend=False):
     mats = palette(identifier, config)
     body(config, mats, seed)
     head(config, mats, seed)
+    before_weapon = set(F.parts)
     bone, point = weapon(config, mats)
+    D.prop_details(config, mats)
+    gear = [obj for obj in F.parts if obj not in before_weapon]
     F.tag_face_parts()
-    bpy.ops.object.select_all(action='DESELECT')
-    for obj in F.parts:
-        obj.select_set(True)
-    bpy.context.view_layer.objects.active = F.parts[0]
-    bpy.ops.object.join()
-    mesh = bpy.context.object
-    mesh.name = identifier + '_body'
-    F.face_controls(mesh)
-    mesh.select_set(False)
+    meshes = D.assemble(identifier, gear)
     armature = F.rig(identifier)
-    modifier = mesh.modifiers.new('Skeleton', 'ARMATURE')
-    modifier.object = armature
-    mesh.parent = armature
-    mesh.data.calc_loop_triangles()
-    triangles = len(mesh.data.loop_triangles)
-    assert triangles <= 30000, (identifier, triangles)
+    triangles = 0
+    for mesh in meshes:
+        D.skin_weights(mesh)
+        modifier = mesh.modifiers.new('Skeleton', 'ARMATURE')
+        modifier.object = armature
+        mesh.parent = armature
+        mesh.data.calc_loop_triangles()
+        triangles += len(mesh.data.loop_triangles)
+    assert triangles <= 65000, (identifier, triangles)
     family = motion_family(config['weaponType'])
     contacts = measured_contacts(armature, bone, point, family)
     bpy.ops.object.select_all(action='DESELECT')
-    mesh.select_set(True)
+    for mesh in meshes:
+        mesh.select_set(True)
     armature.select_set(True)
     bpy.context.view_layer.objects.active = armature
     bpy.ops.export_scene.gltf(filepath=str(OUT / (identifier + '.glb')), export_format='GLB', use_selection=True,
                               export_animations=False, export_skins=True, export_morph=True, export_morph_normal=False)
     size = (OUT / (identifier + '.glb')).stat().st_size
-    assert size <= 2 * 1024 * 1024, (identifier, size)
+    assert size <= 5 * 1024 * 1024, (identifier, size)
     if save_blend:
         # Editable character file includes its shared clips for posing and revision.
         animate(armature, family)

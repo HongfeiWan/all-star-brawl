@@ -1,0 +1,3413 @@
+{
+  "huaqiang": {
+    "outfit": "jacket",
+    "hair": "buzz",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#181c24",
+    "secondary": "#323944",
+    "details": [
+      "zip",
+      "leather"
+    ],
+    "referenceCue": "黑色立领夹克、短寸、硬朗下颌",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1ry4y1T7ap/",
+      "https://www.bilibili.com/video/BV1uL4y1P7M1/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "guatan": {
+    "outfit": "apron",
+    "hair": "balding",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#a29c87",
+    "secondary": "#627183",
+    "details": [
+      "apron",
+      "aged"
+    ],
+    "referenceCue": "稀疏鬓发、厚脸颊、布围裙",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1gi421a7fW/",
+      "https://www.bilibili.com/video/BV1uL4y1P7M1/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "zhugeliang": {
+    "outfit": "robe",
+    "hair": "bun",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#d7dbcd",
+    "secondary": "#527b74",
+    "details": [
+      "embroidered",
+      "beard"
+    ],
+    "referenceCue": "纶巾、长须、层叠浅色衣袍",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1P4411L7kJ/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "caocao": {
+    "outfit": "robe",
+    "hair": "bun",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#48566a",
+    "secondary": "#aa916c",
+    "details": [
+      "brocade",
+      "beard"
+    ],
+    "referenceCue": "乌冠、髭须、深色锦袍",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/265645629932604769",
+      "https://www.bilibili.com/video/BV1AL411q7e2/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "headwear": "court",
+    "beard": "short",
+    "weaponType": "bowl"
+  },
+  "liubei": {
+    "outfit": "robe",
+    "hair": "bun",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#bfa682",
+    "secondary": "#645847",
+    "details": [
+      "brocade",
+      "beard"
+    ],
+    "referenceCue": "高髻、细髭、宽袖长袍",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/265645629932604769",
+      "https://www.bilibili.com/video/BV1NH4y1w7ao/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "headwear": "scholar",
+    "beard": "moustache",
+    "weaponType": "sword"
+  },
+  "zhangfei": {
+    "outfit": "armor",
+    "hair": "curly",
+    "accessory": "none",
+    "faceStyle": "wide",
+    "primary": "#45372e",
+    "secondary": "#ad723c",
+    "details": [
+      "lamellar",
+      "beard"
+    ],
+    "referenceCue": "阔脸、卷须、深色层甲",
+    "faceParams": {
+      "width": 1.2,
+      "height": 0.93,
+      "noseWidth": 1.35,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.18,
+      "jaw": 1.23
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1NH4y1w7ao/",
+      "https://www.bilibili.com/video/BV1KRZEBrEeF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "beard": "forked",
+    "build": "athletic",
+    "weaponType": "polearm"
+  },
+  "guanyu": {
+    "outfit": "robe",
+    "hair": "bun",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#326744",
+    "secondary": "#d3b378",
+    "details": [
+      "embroidered",
+      "beard"
+    ],
+    "referenceCue": "红面、长须、绿袍",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.11,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.93,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1NH4y1w7ao/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "beard": "long",
+    "skin": "#c67e58",
+    "weaponType": "halberd"
+  },
+  "liyunlong": {
+    "outfit": "uniform",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#71795e",
+    "secondary": "#b3af8f",
+    "details": [
+      "uniform",
+      "aged"
+    ],
+    "referenceCue": "军帽、斜挎带、灰绿军装",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1P4411L7kJ/",
+      "https://www.bilibili.com/opus/265645629932604769",
+      "https://tv.cctv.com/2021/03/25/VIDE28USNOqYInQDrPE743Gv210325.shtml"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "chuyunfei": {
+    "outfit": "uniform",
+    "hair": "slick",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#647155",
+    "secondary": "#bcb487",
+    "details": [
+      "uniform"
+    ],
+    "referenceCue": "军帽、肩章、笔挺军装",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1YDBwYcESx/",
+      "https://tv.cctv.com/2021/03/25/VIDE28USNOqYInQDrPE743Gv210325.shtml"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "headwear": "armycap",
+    "weaponType": "sword"
+  },
+  "yanshuangying": {
+    "outfit": "coat",
+    "hair": "slick",
+    "accessory": "sunglasses",
+    "faceStyle": "angular",
+    "primary": "#202a35",
+    "secondary": "#726452",
+    "details": [
+      "leather",
+      "holster"
+    ],
+    "referenceCue": "墨镜、皮质长外套、双枪套",
+    "faceParams": {
+      "width": 1.01,
+      "height": 1.05,
+      "noseWidth": 1.17,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.03,
+      "jaw": 1.04
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV12j41157X6/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "chuanshanjia": {
+    "outfit": "cook",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "narrow",
+    "primary": "#acb094",
+    "secondary": "#59664c",
+    "details": [
+      "apron",
+      "uniform"
+    ],
+    "referenceCue": "白厨师帽、收腰围裙、汤勺",
+    "faceParams": {
+      "width": 0.93,
+      "height": 1.08,
+      "noseWidth": 0.98,
+      "eyeHeight": 0.72,
+      "mouthWidth": 0.92,
+      "jaw": 0.87
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1nV4y1j7TQ/",
+      "https://tv.cctv.com/v/vd/VIDA1353995135019960.html"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "liuxing": {
+    "outfit": "suspenders",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#d8d4bd",
+    "secondary": "#364041",
+    "details": [
+      "suspenders"
+    ],
+    "referenceCue": "白衬衫、黑背带、棍状道具",
+    "faceParams": {
+      "width": 1.05,
+      "height": 1.05,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1P4411L7kJ/",
+      "https://www.bilibili.com/video/BV1pt411X7PZ/",
+      "https://www.iqiyi.com/dianshiju/jgxxzyhhq/fjjs.html"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "liangfeifan": {
+    "outfit": "uniform",
+    "hair": "slick",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#495d48",
+    "secondary": "#baac73",
+    "details": [
+      "uniform"
+    ],
+    "referenceCue": "警帽、阔脸、胸袋与肩章",
+    "faceParams": {
+      "width": 1.16,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.2
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1P4411L7kJ/",
+      "https://www.bilibili.com/video/BV11x411M7mW/",
+      "https://www.iqiyi.com/dianshiju/jgxxzyhhq/fjjs.html"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "wuying": {
+    "outfit": "openjacket",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#a7b4c1",
+    "secondary": "#eee0c9",
+    "details": [
+      "denim"
+    ],
+    "referenceCue": "宽翻领、偏分头、颧骨",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 1.13,
+      "jaw": 0.9
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1iz4y1T751/",
+      "https://www.bilibili.com/video/BV1Vb411y74u/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "fahai": {
+    "outfit": "monk",
+    "hair": "bald",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#c78b46",
+    "secondary": "#9f3c29",
+    "details": [
+      "beads",
+      "embroidered"
+    ],
+    "referenceCue": "光头、念珠、红黄僧衣",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1vz411v7eU/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "maguocheng": {
+    "outfit": "robe",
+    "hair": "bald",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#404c59",
+    "secondary": "#b18b50",
+    "details": [
+      "court"
+    ],
+    "referenceCue": "清式顶戴、辫子、深色官服",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Fx4y1V7xf/",
+      "https://v.youku.com/v_show/id_XNjQwMDE5NTkwMA%3D%3D.html",
+      "https://www.bilibili.com/video/BV1KRZEBrEeF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "beard": "none",
+    "weaponType": "polearm",
+    "headwear": "qing"
+  },
+  "tianwenjing": {
+    "outfit": "robe",
+    "hair": "bald",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#455c74",
+    "secondary": "#bb8b54",
+    "details": [
+      "court",
+      "aged"
+    ],
+    "referenceCue": "清官顶戴、补服、辫发",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Fx4y1V7xf/",
+      "https://v.youku.com/v_show/id_XNjQwMDE5NTkwMA%3D%3D.html"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "headwear": "qing",
+    "age": "old"
+  },
+  "yuanhua": {
+    "outfit": "school",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "sharp",
+    "primary": "#eeece0",
+    "secondary": "#354f70",
+    "details": [
+      "school"
+    ],
+    "referenceCue": "白色校服、深色领边、鱼叉",
+    "faceParams": {
+      "width": 0.92,
+      "height": 1.02,
+      "noseWidth": 0.9,
+      "eyeHeight": 0.79,
+      "mouthWidth": 0.91,
+      "jaw": 0.83
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1KRZEBrEeF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "madongmei": {
+    "outfit": "tracksuit",
+    "hair": "ponytail",
+    "accessory": "none",
+    "faceStyle": "soft",
+    "primary": "#b84c4c",
+    "secondary": "#eee7d6",
+    "details": [
+      "sport"
+    ],
+    "referenceCue": "马尾、红白运动服、标枪",
+    "faceParams": {
+      "width": 0.95,
+      "height": 0.96,
+      "noseWidth": 0.87,
+      "eyeHeight": 1.03,
+      "mouthWidth": 0.98,
+      "jaw": 0.88
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/265645629932604769",
+      "https://www.bilibili.com/video/BV1KRZEBrEeF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "shy"
+  },
+  "liuhaizhu": {
+    "outfit": "bare",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "narrow",
+    "primary": "#b39a6e",
+    "secondary": "#4e6479",
+    "details": [
+      "denim"
+    ],
+    "referenceCue": "草帽、裸上身、工装裤",
+    "faceParams": {
+      "width": 0.93,
+      "height": 1.08,
+      "noseWidth": 0.98,
+      "eyeHeight": 0.72,
+      "mouthWidth": 0.92,
+      "jaw": 0.87
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1peeFeJEaD/",
+      "https://www.bilibili.com/video/BV1KRZEBrEeF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "lvziqiao": {
+    "outfit": "openjacket",
+    "hair": "spiky",
+    "accessory": "none",
+    "faceStyle": "oval",
+    "primary": "#556a83",
+    "secondary": "#d4dbe0",
+    "details": [
+      "denim"
+    ],
+    "referenceCue": "竖发、休闲牛仔外套、长脸",
+    "faceParams": {
+      "width": 1.0,
+      "height": 1.02,
+      "noseWidth": 1.04,
+      "eyeHeight": 0.88,
+      "mouthWidth": 1.01,
+      "jaw": 0.96
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1bk4y1z7nT/",
+      "https://www.bilibili.com/video/BV1KRZEBrEeF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "zengxiaoxian": {
+    "outfit": "shirt",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#d4d8d4",
+    "secondary": "#596e8d",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "侧分短发、衬衫、话筒",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/av60573140/",
+      "https://www.bilibili.com/video/BV1uW411h7uG/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "heihuafu": {
+    "outfit": "tank",
+    "hair": "spiky",
+    "accessory": "none",
+    "faceStyle": "wide",
+    "primary": "#2e2936",
+    "secondary": "#b86638",
+    "details": [
+      "muscle",
+      "beard"
+    ],
+    "referenceCue": "红发、浓须、黑色背心",
+    "faceParams": {
+      "width": 1.2,
+      "height": 0.93,
+      "noseWidth": 1.32,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.18,
+      "jaw": 1.22
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1SV411h7qr/",
+      "https://www.bilibili.com/video/BV1Cx411i7Dd/",
+      "https://www.bilibili.com/video/BV1Cx411H7VM/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "liuxing_child": {
+    "outfit": "school",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "soft",
+    "primary": "#eeeadc",
+    "secondary": "#387e9d",
+    "details": [
+      "school"
+    ],
+    "referenceCue": "少年脸、短发、蓝白校服书包",
+    "faceParams": {
+      "width": 0.94,
+      "height": 0.96,
+      "noseWidth": 0.87,
+      "eyeHeight": 0.98,
+      "mouthWidth": 0.98,
+      "jaw": 0.88
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1sE411D7D3/",
+      "https://www.bilibili.com/video/BV13h411k777/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "shy"
+  },
+  "baizhantang": {
+    "outfit": "robe",
+    "hair": "bun",
+    "accessory": "headband",
+    "faceStyle": "oval",
+    "primary": "#aa7044",
+    "secondary": "#ddd0a3",
+    "details": [
+      "embroidered"
+    ],
+    "referenceCue": "长发束髻、额带、交领布袍",
+    "faceParams": {
+      "width": 1.0,
+      "height": 1.02,
+      "noseWidth": 1.04,
+      "eyeHeight": 0.88,
+      "mouthWidth": 1.01,
+      "jaw": 0.96
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/265645629932604769",
+      "https://www.taptap.cn/moment/16843785665250554?group_id=54197",
+      "https://www.bilibili.com/read/cv5581441/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "weaponType": "fist"
+  },
+  "rongmomo": {
+    "outfit": "qipao",
+    "hair": "bun",
+    "accessory": "none",
+    "faceStyle": "wrinkled",
+    "primary": "#50314d",
+    "secondary": "#bd945d",
+    "details": [
+      "qipao",
+      "court",
+      "aged"
+    ],
+    "referenceCue": "宫女旗头、细纹、紫色旗装",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.02,
+      "noseWidth": 1.1,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Yx41127Vx/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "erkang": {
+    "outfit": "robe",
+    "hair": "bald",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#74594c",
+    "secondary": "#b69a6b",
+    "details": [
+      "court"
+    ],
+    "referenceCue": "清式帽、辫子、长脸",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/265645629932604769",
+      "https://www.bilibili.com/video/BV1Zs411B7ev/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "headwear": "qing",
+    "weaponType": "sword"
+  },
+  "xueyi": {
+    "outfit": "qipao",
+    "hair": "wavy",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#753b62",
+    "secondary": "#dfb4a6",
+    "details": [
+      "qipao"
+    ],
+    "referenceCue": "卷发、珍珠饰、紫色旗袍",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1nx411F7fM/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "hongshixian": {
+    "outfit": "suit",
+    "hair": "slick",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#424956",
+    "secondary": "#d6d4cf",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "深色西装、利落侧分、领带",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV19Z4y1M7WP/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "bujingyun": {
+    "outfit": "cape",
+    "hair": "curly",
+    "accessory": "none",
+    "faceStyle": "angular",
+    "primary": "#39303a",
+    "secondary": "#b73234",
+    "details": [
+      "leather",
+      "muscle"
+    ],
+    "referenceCue": "卷发、披风、无袖上衣",
+    "faceParams": {
+      "width": 1.01,
+      "height": 1.05,
+      "noseWidth": 1.17,
+      "eyeHeight": 0.64,
+      "mouthWidth": 1.03,
+      "jaw": 1.15
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/265645629932604769",
+      "https://www.sohu.com/a/574881271_120885209"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "xiaozuanfeng": {
+    "outfit": "robe",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#934c3b",
+    "secondary": "#d9b06a",
+    "details": [
+      "patches"
+    ],
+    "referenceCue": "小妖头帽、系带、巡山旗",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1f4411K7NB/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "headwear": "cap",
+    "weaponType": "flag"
+  },
+  "jixiaolan": {
+    "outfit": "robe",
+    "hair": "bald",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#416681",
+    "secondary": "#bd965c",
+    "details": [
+      "court",
+      "aged"
+    ],
+    "referenceCue": "清官顶戴、宽脸、长辫",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1GW41197bp/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "headwear": "qing",
+    "age": "old"
+  },
+  "youle": {
+    "outfit": "cape",
+    "hair": "spiky",
+    "accessory": "none",
+    "faceStyle": "sharp",
+    "primary": "#326785",
+    "secondary": "#d64b4c",
+    "details": [
+      "piping"
+    ],
+    "referenceCue": "尖发、红蓝披肩、金色头冠",
+    "faceParams": {
+      "width": 0.92,
+      "height": 1.02,
+      "noseWidth": 0.9,
+      "eyeHeight": 0.79,
+      "mouthWidth": 0.91,
+      "jaw": 0.83
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/265645629932604769",
+      "https://www.bilibili.com/opus/371016712596694843"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "geping": {
+    "outfit": "suit",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "round",
+    "primary": "#c8bdad",
+    "secondary": "#615951",
+    "details": [
+      "zip",
+      "aged"
+    ],
+    "referenceCue": "采访短发、眼镜、西装领带",
+    "faceParams": {
+      "width": 1.12,
+      "height": 0.94,
+      "noseWidth": 1.15,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1FW411N7QG/",
+      "https://www.bilibili.com/video/BV1G741197an/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "age": "old",
+    "hairColor": "#332d28"
+  },
+  "kela_american": {
+    "outfit": "suit",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#bba98f",
+    "secondary": "#d4c096",
+    "details": [
+      "tailored",
+      "fertilizer"
+    ],
+    "referenceCue": "浅色西装、浅发、颗粒袋",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Rs411R7Hi/",
+      "https://www.bilibili.com/opus/41918786320211833"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "hairColor": "#c9c0a8",
+    "skin": "#d3b38c",
+    "age": "old"
+  },
+  "kela_japanese": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#e4dbb8",
+    "secondary": "#525748",
+    "details": [
+      "shirt",
+      "fertilizer"
+    ],
+    "referenceCue": "米色短袖、黑发、颗粒袋",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Rs411R7Hi/",
+      "https://www.bilibili.com/read/cv8126392/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "kela_african": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "oval",
+    "primary": "#aa3f38",
+    "secondary": "#e2c18c",
+    "details": [
+      "shirt",
+      "fertilizer"
+    ],
+    "referenceCue": "深肤色、红色短袖、颗粒袋",
+    "faceParams": {
+      "width": 1.0,
+      "height": 1.02,
+      "noseWidth": 1.04,
+      "eyeHeight": 0.88,
+      "mouthWidth": 1.01,
+      "jaw": 0.96
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Rs411R7Hi/",
+      "https://www.bilibili.com/read/cv8126392/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "skin": "#704c39"
+  },
+  "lanlanlu": {
+    "outfit": "clown",
+    "hair": "curly",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#e7bd39",
+    "secondary": "#c9363c",
+    "details": [
+      "clown"
+    ],
+    "referenceCue": "红色卷发、白妆、黄红条纹",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1a44y1k71C/",
+      "https://www.bilibili.com/video/BV1j3qpYsE54/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "hairColor": "#c93533",
+    "skin": "#f1e4d0"
+  },
+  "fuhrer": {
+    "outfit": "uniform",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "narrow",
+    "primary": "#515b4e",
+    "secondary": "#9c9476",
+    "details": [
+      "uniform",
+      "beard"
+    ],
+    "referenceCue": "电影侧分头、小方髭、军装",
+    "faceParams": {
+      "width": 0.93,
+      "height": 1.08,
+      "noseWidth": 0.98,
+      "eyeHeight": 0.72,
+      "mouthWidth": 0.92,
+      "jaw": 0.87
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Hx411c7iM/",
+      "https://www.bilibili.com/video/BV1Ts411S73P/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert",
+    "beard": "moustache",
+    "age": "old"
+  },
+  "germanboy": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "round",
+    "primary": "#c4d1dc",
+    "secondary": "#416484",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "短发、金属框眼镜、浅色T恤",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Zs411B7ev/",
+      "https://www.bilibili.com/video/BV1Gx411A7ei/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "billy": {
+    "outfit": "bare",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#c6b69e",
+    "secondary": "#4c5966",
+    "details": [
+      "muscle"
+    ],
+    "referenceCue": "宽肩、短金发、运动短裤",
+    "faceParams": {
+      "width": 1.11,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.14
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/70025228400261491",
+      "https://www.bilibili.com/video/BV1pW411K7Zu/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "hairColor": "#ab8a53",
+    "build": "athletic"
+  },
+  "van": {
+    "outfit": "tank",
+    "hair": "slick",
+    "accessory": "none",
+    "faceStyle": "angular",
+    "primary": "#242733",
+    "secondary": "#8c6b59",
+    "details": [
+      "leather",
+      "muscle"
+    ],
+    "referenceCue": "后梳头发、黑皮衣、肌肉轮廓",
+    "faceParams": {
+      "width": 1.01,
+      "height": 1.05,
+      "noseWidth": 1.17,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.03,
+      "jaw": 1.04
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/70025228400261491",
+      "https://www.bilibili.com/audio/au18013"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "build": "athletic"
+  },
+  "kazuya": {
+    "outfit": "bare",
+    "hair": "buzz",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#c3a988",
+    "secondary": "#3d434c",
+    "details": [
+      "muscle"
+    ],
+    "referenceCue": "寸头、宽下颌、训练服",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Xe4y1S7dt/",
+      "https://www.bilibili.com/opus/88537190279828923"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "build": "athletic"
+  },
+  "rick": {
+    "outfit": "coat",
+    "hair": "curly",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#282d36",
+    "secondary": "#ece6d8",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "棕红卷发、黑外套、浅色内搭",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1S1421D72Q/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "hairColor": "#865237"
+  },
+  "yamaguchi": {
+    "outfit": "suit",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "sharp",
+    "primary": "#252832",
+    "secondary": "#b3b6bb",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "偏分刘海、瘦长脸、黑西装",
+    "faceParams": {
+      "width": 0.92,
+      "height": 1.02,
+      "noseWidth": 0.9,
+      "eyeHeight": 0.79,
+      "mouthWidth": 0.91,
+      "jaw": 0.83
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1U24y1T7Nc/",
+      "https://www.bilibili.com/opus/251994398504596845"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "pikotaro": {
+    "outfit": "shirt",
+    "hair": "curly",
+    "accessory": "glasses",
+    "faceStyle": "long",
+    "primary": "#d4b64e",
+    "secondary": "#775733",
+    "details": [
+      "leopard",
+      "scarf"
+    ],
+    "referenceCue": "卷发、眼镜、豹纹与围巾",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://test.avex.com/jp/ja/contents/team-kosaka-ppap/",
+      "https://www.bilibili.com/video/BV1Ds411t7cc/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "hairColor": "#302522"
+  },
+  "azis": {
+    "outfit": "coat",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "wide",
+    "primary": "#e7d8cc",
+    "secondary": "#a37f44",
+    "details": [
+      "sequins",
+      "beard"
+    ],
+    "referenceCue": "漂白发、浓须、亮片舞台服",
+    "faceParams": {
+      "width": 1.2,
+      "height": 0.93,
+      "noseWidth": 1.32,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.18,
+      "jaw": 1.23
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/70025228400261491",
+      "https://www.bilibili.com/video/BV1Kz4y1Y7wc/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "hairColor": "#cabaa0",
+    "beard": "short",
+    "build": "heavy"
+  },
+  "shuzo": {
+    "outfit": "tracksuit",
+    "hair": "short",
+    "accessory": "headband",
+    "faceStyle": "square",
+    "primary": "#ae3135",
+    "secondary": "#e1e0ce",
+    "details": [
+      "sport"
+    ],
+    "referenceCue": "短发、红白运动服、球拍",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/av211850",
+      "https://www.bilibili.com/read/cv4523969/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "bolan": {
+    "outfit": "jacket",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#494b5a",
+    "secondary": "#b8a691",
+    "details": [
+      "zip"
+    ],
+    "referenceCue": "蓬松短发、深色外套、话筒",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1ix41187Nv/",
+      "https://www.bilibili.com/video/BV1GW411g7mc/",
+      "https://epaper.bbtnews.com.cn/site1/bjsb/images/2019-01/29/C4/20190129C4_pdf.pdf"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "gaoyin": {
+    "outfit": "shirt",
+    "hair": "emo",
+    "accessory": "glasses",
+    "faceStyle": "long",
+    "primary": "#d3d8ce",
+    "secondary": "#536b6b",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "侧分、瘦长脸、浅衬衣",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1ix41187Nv/",
+      "https://www.bilibili.com/video/BV1At411m7Nt/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "mianjin": {
+    "outfit": "apron",
+    "hair": "long",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#61604d",
+    "secondary": "#ad7c40",
+    "details": [
+      "apron",
+      "beard"
+    ],
+    "referenceCue": "长发长须、围裙、串状道具",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1GW411g7mc/",
+      "https://epaper.bbtnews.com.cn/site1/bjsb/images/2019-01/29/C4/20190129C4_pdf.pdf"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "beard": "long",
+    "weaponType": "staff"
+  },
+  "bus_uncle": {
+    "outfit": "shirt",
+    "hair": "balding",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#d5d6bf",
+    "secondary": "#575c53",
+    "details": [
+      "shirt",
+      "aged"
+    ],
+    "referenceCue": "稀疏发、阔脸、浅色衬衣",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV19s411L7B4/",
+      "https://zh.wikipedia.org/wiki/%E5%B7%B4%E5%A3%AB%E9%98%BF%E5%8F%94%E4%BA%8B%E4%BB%B6"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "qie": {
+    "outfit": "shirt",
+    "hair": "long",
+    "accessory": "none",
+    "faceStyle": "narrow",
+    "primary": "#adb19e",
+    "secondary": "#697460",
+    "details": [
+      "shirt",
+      "beard"
+    ],
+    "referenceCue": "凌乱长发、细须、浅色短袖",
+    "faceParams": {
+      "width": 0.94,
+      "height": 1.08,
+      "noseWidth": 0.98,
+      "eyeHeight": 0.72,
+      "mouthWidth": 1.13,
+      "jaw": 0.87
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1fe411x7XV/",
+      "https://www.bilibili.com/video/BV1Ff4y1S7KD/",
+      "https://zh.wikipedia.org/wiki/%E5%91%A8%E7%AB%8B%E9%BD%90"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert",
+    "beard": "moustache"
+  },
+  "dali": {
+    "outfit": "jacket",
+    "hair": "buzz",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#424e51",
+    "secondary": "#aaa58d",
+    "details": [
+      "zip"
+    ],
+    "referenceCue": "短寸、阔脸、深色外套",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1HW411B7W8/",
+      "https://www.bilibili.com/video/BV1Gt4y1U7Mt/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "yaoshui": {
+    "outfit": "tracksuit",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#434f5a",
+    "secondary": "#9ba8b0",
+    "details": [
+      "sport"
+    ],
+    "referenceCue": "偏分发、圆脸、训练服",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1ma4y1x7Na/",
+      "https://www.bilibili.com/video/BV1ni4y1Z7tY/",
+      "https://www.bilibili.com/video/BV1eJ411a7Qe/",
+      "https://www.bilibili.com/video/BV1N94y1x7wo/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "giao": {
+    "outfit": "jacket",
+    "hair": "buzz",
+    "accessory": "none",
+    "faceStyle": "wide",
+    "primary": "#334553",
+    "secondary": "#ada18c",
+    "details": [
+      "zip"
+    ],
+    "referenceCue": "寸发、阔下颌、宽松夹克",
+    "faceParams": {
+      "width": 1.2,
+      "height": 0.93,
+      "noseWidth": 1.32,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.18,
+      "jaw": 1.23
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1ni4y1Z7tY/",
+      "https://search.bilibili.com/all?keyword=%E4%B8%80%E7%BB%99%E6%88%91%E9%87%8Cgiaogiao",
+      "https://www.bilibili.com/video/BV144411i7Gr/",
+      "https://www.bilibili.com/video/BV1Xt411i7sD/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "headwear": "none"
+  },
+  "dongyong": {
+    "outfit": "tank",
+    "hair": "balding",
+    "accessory": "headband",
+    "faceStyle": "wrinkled",
+    "primary": "#eddfb7",
+    "secondary": "#bf4637",
+    "details": [
+      "muscle",
+      "aged"
+    ],
+    "referenceCue": "稀疏发、额带、运动背心",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.02,
+      "noseWidth": 1.1,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1KRZEBrEeF/",
+      "https://zh.wikipedia.org/wiki/%E6%9C%9D%E9%98%B3%E5%86%AC%E6%B3%B3%E6%80%AA%E9%B8%BD",
+      "https://space.bilibili.com/690748574",
+      "https://www.bilibili.com/video/BV19L411L77S/",
+      "https://www.bilibili.com/video/BV11u41127Pb/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "age": "old"
+  },
+  "zhangquandan": {
+    "outfit": "uniform",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "oval",
+    "primary": "#38717d",
+    "secondary": "#dae7dd",
+    "details": [
+      "workwear"
+    ],
+    "referenceCue": "蓝色工服、胸牌、蓬松短发",
+    "faceParams": {
+      "width": 1.0,
+      "height": 1.02,
+      "noseWidth": 1.04,
+      "eyeHeight": 0.88,
+      "mouthWidth": 1.01,
+      "jaw": 0.96
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Hx411x73a/",
+      "https://www.bilibili.com/video/BV1ps411c7vW/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "liangyifeng": {
+    "outfit": "waistcoat",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#454d53",
+    "secondary": "#deded0",
+    "details": [
+      "school"
+    ],
+    "referenceCue": "制服背心、白衬衫、朗诵册",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Wx411K7sg/",
+      "https://www.bilibili.com/video/BV1as411i7Gu/",
+      "https://www.bilibili.com/h5/good-history?navhide=1&time=1658280284006"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "pangmailang": {
+    "outfit": "jacket",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#596c79",
+    "secondary": "#d9d7c8",
+    "details": [
+      "denim"
+    ],
+    "referenceCue": "短发、窄脸、蓝色外套",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1cs411d7pi/",
+      "https://www.bilibili.com/video/BV1A4JizgEQ5/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "kim": {
+    "outfit": "tracksuit",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#3e5976",
+    "secondary": "#ebe5cb",
+    "details": [
+      "sport"
+    ],
+    "referenceCue": "短寸、宽嘴角、道服领口",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1pW411K7Zu/",
+      "https://www.bilibili.com/audio/au18013"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "ricardo": {
+    "outfit": "bare",
+    "hair": "slick",
+    "accessory": "headband",
+    "faceStyle": "angular",
+    "primary": "#c9a784",
+    "secondary": "#475b63",
+    "details": [
+      "muscle",
+      "leather"
+    ],
+    "referenceCue": "头巾、古铜肤色、训练裤",
+    "faceParams": {
+      "width": 1.01,
+      "height": 1.07,
+      "noseWidth": 1.21,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.03,
+      "jaw": 1.04
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/opus/70025228400261491",
+      "https://www.bilibili.com/video/BV1KRZEBrEeF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "skin": "#b48254",
+    "build": "athletic"
+  },
+  "ippei": {
+    "outfit": "suit",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "oval",
+    "primary": "#3e424c",
+    "secondary": "#d4d5c9",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "深色西装、整齐短发、糖棒",
+    "faceParams": {
+      "width": 1.0,
+      "height": 1.02,
+      "noseWidth": 1.04,
+      "eyeHeight": 0.88,
+      "mouthWidth": 1.01,
+      "jaw": 0.96
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV11x411i75u/",
+      "https://www.bilibili.com/video/BV1Ss411s7c9/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "trololo": {
+    "outfit": "suit",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#af9d77",
+    "secondary": "#e4d7ba",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "金棕偏分、浅色西装、领带",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1wz4y1V7hH/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "hairColor": "#9b7852",
+    "age": "old"
+  },
+  "guazi": {
+    "outfit": "coat",
+    "hair": "short",
+    "accessory": "scarf",
+    "faceStyle": "round",
+    "primary": "#5c6556",
+    "secondary": "#b2a99a",
+    "details": [
+      "zip"
+    ],
+    "referenceCue": "短发、棉外套、围巾",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1cx411N7ze/",
+      "https://www.bilibili.com/video/BV1cx411N7mD/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "marcus": {
+    "outfit": "tank",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "angular",
+    "primary": "#303844",
+    "secondary": "#b69666",
+    "details": [
+      "muscle"
+    ],
+    "referenceCue": "短发、运动背心、节奏话筒",
+    "faceParams": {
+      "width": 1.01,
+      "height": 1.05,
+      "noseWidth": 1.17,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.03,
+      "jaw": 1.04
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Zs411B7ev/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "aipc": {
+    "outfit": "suit",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#596277",
+    "secondary": "#e4dfcc",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "偏分、眼镜、西装键盘",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1mW411f79T/",
+      "https://www.bilibili.com/video/BV1J4411c7ZH/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "beard": "short"
+  },
+  "xiong": {
+    "outfit": "robe",
+    "hair": "balding",
+    "accessory": "none",
+    "faceStyle": "wrinkled",
+    "primary": "#cdcec0",
+    "secondary": "#6c7464",
+    "details": [
+      "mandarin",
+      "aged",
+      "beard"
+    ],
+    "referenceCue": "白发、细须、医师式长褂",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.02,
+      "noseWidth": 1.1,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1bx411i754/",
+      "https://www.bilibili.com/video/av13074542/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "beard": "white",
+    "hairColor": "#c8c8b9",
+    "age": "old"
+  },
+  "ishii": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#e5dac4",
+    "secondary": "#6d543a",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "短发、围裙式腰带、啤酒杯",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1pb411E7k2/",
+      "https://www.bilibili.com/video/BV1Zs411B7ev/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "weaponType": "cup",
+    "headwear": "none"
+  },
+  "xinhuayu": {
+    "outfit": "shirt",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#d9d7c5",
+    "secondary": "#6b7d91",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "白衬衣、短侧分、收款包",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Gx411A7ei/",
+      "https://www.bilibili.com/video/BV1Zs411B7ev/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "tiande": {
+    "outfit": "jacket",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#5e6257",
+    "secondary": "#bfae8c",
+    "details": [
+      "zip"
+    ],
+    "referenceCue": "短发、厚脸颊、浴池式外套",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Gx411A7ei/",
+      "https://www.bilibili.com/video/BV1Zs411B7ev/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "wang-jingze": {
+    "outfit": "tracksuit",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "soft",
+    "primary": "#3c515e",
+    "secondary": "#d6d6c8",
+    "details": [
+      "sport"
+    ],
+    "referenceCue": "青年短发、蓝白外套、饭碗",
+    "faceParams": {
+      "width": 0.95,
+      "height": 0.96,
+      "noseWidth": 0.87,
+      "eyeHeight": 1.03,
+      "mouthWidth": 0.98,
+      "jaw": 0.88
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1d7411X7J4/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "shy"
+  },
+  "jiege": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "round",
+    "primary": "#57667e",
+    "secondary": "#d6dcdb",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "短发、黑框眼镜、宽脸",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1rA411g7q8/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "awei": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "soft",
+    "primary": "#c1d2d8",
+    "secondary": "#477491",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "少年脸、短发、矩形眼镜",
+    "faceParams": {
+      "width": 0.95,
+      "height": 0.96,
+      "noseWidth": 0.87,
+      "eyeHeight": 1.03,
+      "mouthWidth": 0.98,
+      "jaw": 0.88
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1rA411g7q8/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "shy"
+  },
+  "binbin": {
+    "outfit": "shirt",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "narrow",
+    "primary": "#eee9db",
+    "secondary": "#5d7180",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "偏分短发、窄脸、浅色上衣",
+    "faceParams": {
+      "width": 0.93,
+      "height": 1.08,
+      "noseWidth": 0.98,
+      "eyeHeight": 0.72,
+      "mouthWidth": 0.92,
+      "jaw": 0.87
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1fN411S7R1/",
+      "https://www.bilibili.com/video/BV1rA411g7q8/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "ama": {
+    "outfit": "coat",
+    "hair": "curly",
+    "accessory": "glasses",
+    "faceStyle": "wrinkled",
+    "primary": "#7d6558",
+    "secondary": "#bbada3",
+    "details": [
+      "ribknit",
+      "aged"
+    ],
+    "referenceCue": "灰色卷发、圆镜、针织外套",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.02,
+      "noseWidth": 1.1,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1rA411g7q8/",
+      "https://www.bilibili.com/video/BV1GHEw6rEo4/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "hairColor": "#a4a39b",
+    "age": "old",
+    "female": true
+  },
+  "dingzhen": {
+    "outfit": "robe",
+    "hair": "parted",
+    "accessory": "scarf",
+    "faceStyle": "sharp",
+    "primary": "#4d4d52",
+    "secondary": "#b33f36",
+    "details": [
+      "tibetan"
+    ],
+    "referenceCue": "黑色中分、红围巾、藏式衣袍",
+    "faceParams": {
+      "width": 0.92,
+      "height": 1.02,
+      "noseWidth": 0.9,
+      "eyeHeight": 0.79,
+      "mouthWidth": 0.91,
+      "jaw": 0.83
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1qK411g73R/",
+      "https://www.bilibili.com/video/BV1We4y1F7vX/",
+      "https://www.bilibili.com/video/BV1VRABehEzm/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert",
+    "hairColor": "#302a28",
+    "build": "slim"
+  },
+  "tanqiao": {
+    "outfit": "uniform",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#536a6c",
+    "secondary": "#dce2d6",
+    "details": [
+      "uniform"
+    ],
+    "referenceCue": "交警帽、反光背心、肩章",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV16i4y1V7wW/",
+      "https://www.bilibili.com/video/BV1A84y1k7sm/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "headwear": "policecap"
+  },
+  "erxianqiao": {
+    "outfit": "jacket",
+    "hair": "balding",
+    "accessory": "none",
+    "faceStyle": "wrinkled",
+    "primary": "#596a70",
+    "secondary": "#bbb7a5",
+    "details": [
+      "workwear",
+      "aged"
+    ],
+    "referenceCue": "布帽、旧夹克、细纹",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.02,
+      "noseWidth": 1.1,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV16i4y1V7wW/",
+      "https://www.bilibili.com/video/BV1Cm4tzMEQq/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "headwear": "clothcap",
+    "age": "old"
+  },
+  "yaoma": {
+    "outfit": "shirt",
+    "hair": "buzz",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#d2cebb",
+    "secondary": "#6f7365",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "寸头、布衬衫、结实前臂",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Er4y1c7Aq/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "lubenwei": {
+    "outfit": "jacket",
+    "hair": "short",
+    "accessory": "headphones",
+    "faceStyle": "long",
+    "primary": "#434c59",
+    "secondary": "#a5b7c5",
+    "details": [
+      "zip"
+    ],
+    "referenceCue": "短发、耳机、拉链外套",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1W4411r7ue/",
+      "https://www.bilibili.com/video/BV1xJ4m1b77L/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "pdd": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "headphones",
+    "faceStyle": "wide",
+    "primary": "#53554d",
+    "secondary": "#a7ab96",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "胖脸、短发、耳机",
+    "faceParams": {
+      "width": 1.24,
+      "height": 0.93,
+      "noseWidth": 1.32,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.18,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1gs411B7y4/",
+      "https://www.bilibili.com/video/BV14V4117791/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "dasima": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "long",
+    "primary": "#d4dcce",
+    "secondary": "#546b59",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "窄脸、矩形眼镜、浅绿上衣",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1xJ411D7jx/",
+      "https://www.bilibili.com/video/BV1vZ4y1N7Br/",
+      "https://www.bilibili.com/video/BV1Mo4y127Nm/",
+      "https://www.bilibili.com/video/BV14V4117791/",
+      "https://www.bilibili.com/video/BV1NK4y1R7Lc/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "yingliu": {
+    "outfit": "shirt",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#ebebdd",
+    "secondary": "#587881",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "偏分短发、白T、舞蹈手势",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1A4411277W/",
+      "https://www.bilibili.com/video/BV1VZn5zYEjh/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "sunxiaochuan": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "round",
+    "primary": "#544e58",
+    "secondary": "#b6aaba",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "圆脸、矩形眼镜、深色T恤",
+    "faceParams": {
+      "width": 1.13,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.19,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1fK4y1s7hp/",
+      "https://www.bilibili.com/video/BV1CZ4y1j7tK/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "laoba": {
+    "outfit": "apron",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#63764e",
+    "secondary": "#ddd8b2",
+    "details": [
+      "apron"
+    ],
+    "referenceCue": "短发、绿围裙、食物道具",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1bZ421t785/",
+      "https://www.bilibili.com/video/BV1Vg4y1B7Ex/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "daoge": {
+    "outfit": "tracksuit",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#37567e",
+    "secondary": "#e4e3db",
+    "details": [
+      "sport"
+    ],
+    "referenceCue": "蓝白运动装、短发、收窄下颌",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1hH4y1y7Sw/",
+      "https://www.bilibili.com/video/BV1dLUQYeEZi/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "huge": {
+    "outfit": "jacket",
+    "hair": "buzz",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#30343b",
+    "secondary": "#929887",
+    "details": [
+      "leather"
+    ],
+    "referenceCue": "寸头、圆脸、黑色夹克",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1EBFSecEmB/",
+      "https://www.bilibili.com/video/BV1hH4y1y7Sw/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "shamate": {
+    "outfit": "jacket",
+    "hair": "emo",
+    "accessory": "headband",
+    "faceStyle": "sharp",
+    "primary": "#5d3b71",
+    "secondary": "#c983ae",
+    "details": [
+      "denim"
+    ],
+    "referenceCue": "夸张斜刘海、发带、紫色外套",
+    "faceParams": {
+      "width": 0.92,
+      "height": 1.02,
+      "noseWidth": 0.9,
+      "eyeHeight": 0.79,
+      "mouthWidth": 0.91,
+      "jaw": 0.83
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1nH4y1w7Jt/",
+      "https://www.bilibili.com/video/BV15T4y1375K/",
+      "https://www.bilibili.com/video/BV1EBFSecEmB/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "xiaoliang": {
+    "outfit": "jacket",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "narrow",
+    "primary": "#67836c",
+    "secondary": "#cad9b6",
+    "details": [
+      "zip"
+    ],
+    "referenceCue": "短发、窄脸、绿夹克",
+    "faceParams": {
+      "width": 0.93,
+      "height": 1.08,
+      "noseWidth": 0.98,
+      "eyeHeight": 0.72,
+      "mouthWidth": 0.92,
+      "jaw": 0.87
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1aK411p7pm/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "leijun": {
+    "outfit": "suit",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "oval",
+    "primary": "#253c57",
+    "secondary": "#dce1da",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "发布会短侧分、深色西装与手机",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.02,
+      "noseWidth": 1.04,
+      "eyeHeight": 0.79,
+      "mouthWidth": 1.01,
+      "jaw": 0.96
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1cK4y1v79Z/",
+      "https://www.bilibili.com/video/BV1va4y1E7Uq/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "luoyonghao": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "round",
+    "primary": "#42484a",
+    "secondary": "#c5c9bd",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "宽脸、细框眼镜、深色T恤",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Pp411f7d8/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "luoxiang": {
+    "outfit": "shirt",
+    "hair": "parted",
+    "accessory": "glasses",
+    "faceStyle": "long",
+    "primary": "#d6e0e0",
+    "secondary": "#596e7d",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "黑色侧分、细框眼镜、讲义册",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.78,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1K7411f7uG/",
+      "https://www.bilibili.com/video/BV1ETedzdE4m/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "hairColor": "#383832",
+    "age": "young"
+  },
+  "zhangsan": {
+    "outfit": "jacket",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "oval",
+    "primary": "#515862",
+    "secondary": "#cab785",
+    "details": [
+      "patches"
+    ],
+    "referenceCue": "案例角色演绎、非真人固定肖像",
+    "faceParams": {
+      "width": 1.0,
+      "height": 1.02,
+      "noseWidth": 1.04,
+      "eyeHeight": 0.88,
+      "mouthWidth": 1.01,
+      "jaw": 0.96
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Yi4y1V7TN/",
+      "https://www.bilibili.com/video/BV1tM411z7eN/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "snowking": {
+    "outfit": "mascot",
+    "hair": "bald",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#f4f1df",
+    "secondary": "#c53f4b",
+    "details": [
+      "mascot"
+    ],
+    "referenceCue": "白色圆身、红披风、王冠",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1xo4y1y7Q4/",
+      "https://www.bilibili.com/video/BV1d3suzAEe7/",
+      "https://www.bilibili.com/video/BV1en4y1f7bp/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "headwear": "crown"
+  },
+  "xuqingen": {
+    "outfit": "suit",
+    "hair": "slick",
+    "accessory": "glasses",
+    "faceStyle": "angular",
+    "primary": "#485362",
+    "secondary": "#ced6e2",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "贴头偏分、细镜框、修身西装",
+    "faceParams": {
+      "width": 1.01,
+      "height": 1.05,
+      "noseWidth": 1.17,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.03,
+      "jaw": 1.04
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV11M4y157NZ/",
+      "https://www.bilibili.com/video/BV1664y1s758/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "tianyiming": {
+    "outfit": "shirt",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#cbb43f",
+    "secondary": "#e7dfa9",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "高卷刘海、眉峰、黄色上衣",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1hM4y1V7xj/",
+      "https://www.bilibili.com/video/BV1EjXPBkEBw/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "panzhoudan": {
+    "outfit": "jacket",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#566771",
+    "secondary": "#beced0",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "高眉骨、长脸、偏分头",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1qv4y1K7Fi/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "mabaoguo": {
+    "outfit": "tracksuit",
+    "hair": "balding",
+    "accessory": "none",
+    "faceStyle": "wrinkled",
+    "primary": "#5d7b92",
+    "secondary": "#cfdae0",
+    "details": [
+      "sport",
+      "aged"
+    ],
+    "referenceCue": "灰白稀疏发、蓝灰运动服",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.02,
+      "noseWidth": 1.1,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1ayeje2EZW/",
+      "https://www.bilibili.com/video/BV1EK4y1f7pk/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "hairColor": "#9a9c90",
+    "age": "old",
+    "weaponType": "fist"
+  },
+  "otto": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "long",
+    "primary": "#919a83",
+    "secondary": "#dce4cc",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "瘦长脸、窄眼、细框眼镜",
+    "faceParams": {
+      "width": 0.9,
+      "height": 1.12,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.59,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1544y1h7Nk/",
+      "https://www.bilibili.com/video/BV1tirkYyEef/",
+      "https://www.bilibili.com/video/BV19oQdBGECZ/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "qiezi": {
+    "outfit": "shirt",
+    "hair": "buzz",
+    "accessory": "headphones",
+    "faceStyle": "square",
+    "primary": "#46514a",
+    "secondary": "#b5c096",
+    "details": [
+      "shirt",
+      "beard"
+    ],
+    "referenceCue": "短寸、胡茬、耳机",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Zt411b7xb/",
+      "https://www.bilibili.com/video/BV1Uv411n7ja/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "beard": "short"
+  },
+  "zhou-shuyi": {
+    "outfit": "jacket",
+    "hair": "long",
+    "accessory": "headphones",
+    "faceStyle": "soft",
+    "primary": "#9d739d",
+    "secondary": "#e3cce3",
+    "details": [
+      "zip"
+    ],
+    "referenceCue": "长黑发、耳机、柔和下颌",
+    "faceParams": {
+      "width": 0.95,
+      "height": 0.96,
+      "noseWidth": 0.87,
+      "eyeHeight": 1.03,
+      "mouthWidth": 0.98,
+      "jaw": 0.88
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV17k4y1m7pr/",
+      "https://www.bilibili.com/video/BV1HJ411e7ag/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "shy",
+    "female": true
+  },
+  "xujingyu": {
+    "outfit": "shirt",
+    "hair": "short",
+    "accessory": "glasses",
+    "faceStyle": "round",
+    "primary": "#759abd",
+    "secondary": "#d6e5ef",
+    "details": [
+      "shirt"
+    ],
+    "referenceCue": "阔脸、短发、蓝色衬衣",
+    "faceParams": {
+      "width": 1.19,
+      "height": 0.94,
+      "noseWidth": 1.24,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1WY4y1z7S1/",
+      "https://www.bilibili.com/video/BV1dwteemE4y/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "guo-laoshi": {
+    "outfit": "coat",
+    "hair": "wavy",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#ac776d",
+    "secondary": "#e1bbb0",
+    "details": [
+      "ribknit"
+    ],
+    "referenceCue": "长卷发、圆脸、宽松外套",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.94,
+      "noseWidth": 1.0,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1eJ411p71G/",
+      "https://www.bilibili.com/video/BV1Ni4y1S7Un/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "female": true
+  },
+  "fugui": {
+    "outfit": "jacket",
+    "hair": "balding",
+    "accessory": "none",
+    "faceStyle": "wrinkled",
+    "primary": "#8a7c5d",
+    "secondary": "#d0c09c",
+    "details": [
+      "patches",
+      "aged"
+    ],
+    "referenceCue": "旧布帽、白鬓发、磨旧夹克",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.02,
+      "noseWidth": 1.1,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Qy4y1W77p/",
+      "https://www.bilibili.com/video/BV1eT4y197HE/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "headwear": "clothcap",
+    "hairColor": "#b6b4a5",
+    "age": "old"
+  },
+  "zhaobenshan": {
+    "outfit": "jacket",
+    "hair": "balding",
+    "accessory": "scarf",
+    "faceStyle": "wrinkled",
+    "primary": "#76796c",
+    "secondary": "#d9d5bb",
+    "details": [
+      "patches",
+      "aged"
+    ],
+    "referenceCue": "布帽、灰白鬓发、旧式夹克",
+    "faceParams": {
+      "width": 1.03,
+      "height": 1.05,
+      "noseWidth": 1.29,
+      "eyeHeight": 0.68,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1bW411n7fY/",
+      "https://www.bilibili.com/video/BV1UJ411R7XJ/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "fanwei": {
+    "outfit": "sweater",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "wide",
+    "primary": "#52645c",
+    "secondary": "#a6b79d",
+    "details": [
+      "ribknit",
+      "aged"
+    ],
+    "referenceCue": "圆脸、稀疏短发、绿针织衫",
+    "faceParams": {
+      "width": 1.2,
+      "height": 0.93,
+      "noseWidth": 1.32,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.18,
+      "jaw": 1.23
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Fb411h7m5/",
+      "https://www.bilibili.com/video/BV14N4y1j79z/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  },
+  "fenggong": {
+    "outfit": "suit",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#697a85",
+    "secondary": "#dce0d8",
+    "details": [
+      "tailored",
+      "aged"
+    ],
+    "referenceCue": "长脸、高额、西装领带",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.12,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 1.18,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1ot411b772/",
+      "https://www.bilibili.com/video/BV1ss411h7eA/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "age": "old"
+  },
+  "songdandan": {
+    "outfit": "coat",
+    "hair": "curly",
+    "accessory": "scarf",
+    "faceStyle": "wrinkled",
+    "primary": "#6a8495",
+    "secondary": "#ded2b6",
+    "details": [
+      "ribknit",
+      "aged"
+    ],
+    "referenceCue": "银色短卷发、围巾、蓝灰外套",
+    "faceParams": {
+      "width": 0.99,
+      "height": 1.02,
+      "noseWidth": 1.1,
+      "eyeHeight": 0.77,
+      "mouthWidth": 1.01,
+      "jaw": 1.06
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/av41213189/",
+      "https://www.bilibili.com/video/BV1Nt411h7gY/",
+      "https://www.bilibili.com/video/BV1UJ411R7XJ/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "hairColor": "#babbb0",
+    "female": true,
+    "age": "old"
+  },
+  "chenglong": {
+    "outfit": "tracksuit",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#bda677",
+    "secondary": "#eadfba",
+    "details": [
+      "sport",
+      "muscle"
+    ],
+    "referenceCue": "厚鼻、偏分头、练功运动服",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.43,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.1
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1q7411C7RY/",
+      "https://www.bilibili.com/video/BV1Xx41137bk/",
+      "https://www.bilibili.com/video/BV1ZU4y1u7Rk/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "wujing": {
+    "outfit": "tracksuit",
+    "hair": "buzz",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#4b6858",
+    "secondary": "#b9c7a6",
+    "details": [
+      "sport",
+      "muscle"
+    ],
+    "referenceCue": "寸头、平直眉、绿训练服",
+    "faceParams": {
+      "width": 1.04,
+      "height": 0.97,
+      "noseWidth": 1.07,
+      "eyeHeight": 0.72,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1vRpKzJERG/",
+      "https://www.bilibili.com/video/BV16L41127XG/",
+      "https://www.bilibili.com/video/BV1zqHDz1EJK/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern"
+  },
+  "huangzitao": {
+    "outfit": "jacket",
+    "hair": "spiky",
+    "accessory": "headband",
+    "faceStyle": "sharp",
+    "primary": "#916b49",
+    "secondary": "#e4b778",
+    "details": [
+      "leather"
+    ],
+    "referenceCue": "高刘海、细眉、皮外套",
+    "faceParams": {
+      "width": 0.92,
+      "height": 1.02,
+      "noseWidth": 0.9,
+      "eyeHeight": 0.79,
+      "mouthWidth": 0.91,
+      "jaw": 0.83
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/av2953258/",
+      "https://www.bilibili.com/video/BV19s41197a1/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "huangxiaoming": {
+    "outfit": "suit",
+    "hair": "slick",
+    "accessory": "none",
+    "faceStyle": "square",
+    "primary": "#514666",
+    "secondary": "#cac5da",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "粗眉、贴头侧分、紫灰西装",
+    "faceParams": {
+      "width": 1.06,
+      "height": 0.97,
+      "noseWidth": 1.2,
+      "eyeHeight": 0.78,
+      "mouthWidth": 1.1,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1b4411U7HD/",
+      "https://www.bilibili.com/video/BV1b4411Z75Z/",
+      "https://www.bilibili.com/video/BV144411d735/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "stern",
+    "beard": "none"
+  },
+  "zhangxueyou": {
+    "outfit": "suit",
+    "hair": "wavy",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#2f4a71",
+    "secondary": "#d8c185",
+    "details": [
+      "tailored"
+    ],
+    "referenceCue": "长脸、卷发、深蓝舞台装",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.13,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 1.13,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV13s41117Df/",
+      "https://www.bilibili.com/video/BV11U4y1n79f/",
+      "https://www.bilibili.com/video/BV15g41117yo/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "tengger": {
+    "outfit": "robe",
+    "hair": "balding",
+    "accessory": "none",
+    "faceStyle": "wide",
+    "primary": "#457b8a",
+    "secondary": "#d3ac72",
+    "details": [
+      "tibetan",
+      "beard",
+      "aged"
+    ],
+    "referenceCue": "稀疏发、浓须、蓝色民族袍",
+    "faceParams": {
+      "width": 1.2,
+      "height": 0.93,
+      "noseWidth": 1.32,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.18,
+      "jaw": 1.23
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1sq1YYdEXh/",
+      "https://www.bilibili.com/video/BV1gy41187We/",
+      "https://www.bilibili.com/video/BV1mv411b7pF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "beard": "short",
+    "age": "old"
+  },
+  "panchangjiang": {
+    "outfit": "jacket",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#877850",
+    "secondary": "#d7c08c",
+    "details": [
+      "zip",
+      "aged"
+    ],
+    "referenceCue": "高额、短发、米色外套",
+    "faceParams": {
+      "width": 1.15,
+      "height": 0.91,
+      "noseWidth": 1.12,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1uZ4y1B7Jj/",
+      "https://www.bilibili.com/video/BV1J34y147b6/",
+      "https://www.bilibili.com/video/BV1qy4y1p7Rw/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "age": "old"
+  },
+  "feiyuqing": {
+    "outfit": "suit",
+    "hair": "parted",
+    "accessory": "none",
+    "faceStyle": "long",
+    "primary": "#c9d9e7",
+    "secondary": "#647f9f",
+    "details": [
+      "tailored",
+      "aged"
+    ],
+    "referenceCue": "整齐侧分、长脸、浅蓝西装",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1js411w7x6/",
+      "https://www.bilibili.com/opus/265645629932604769"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed",
+    "age": "old"
+  },
+  "guodegang": {
+    "outfit": "robe",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "wide",
+    "primary": "#493442",
+    "secondary": "#be9670",
+    "details": [
+      "mandarin"
+    ],
+    "referenceCue": "寸发、圆脸、深色长衫与纸扇",
+    "faceParams": {
+      "width": 1.18,
+      "height": 0.93,
+      "noseWidth": 0.98,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.14,
+      "jaw": 1.0
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Mb411y7Qh/",
+      "https://www.bilibili.com/video/BV1Zs411B7ev/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "fanStyle": "folding"
+  },
+  "yuqian": {
+    "outfit": "robe",
+    "hair": "curly",
+    "accessory": "none",
+    "faceStyle": "round",
+    "primary": "#6f5f50",
+    "secondary": "#c6b18a",
+    "details": [
+      "mandarin",
+      "aged"
+    ],
+    "referenceCue": "蓬松卷发、圆脸、棕色长衫",
+    "faceParams": {
+      "width": 1.11,
+      "height": 0.94,
+      "noseWidth": 1.21,
+      "eyeHeight": 0.8,
+      "mouthWidth": 1.12,
+      "jaw": 1.18
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1TN411X7xk/",
+      "https://www.bilibili.com/video/BV17T421D7GF/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant",
+    "fanStyle": "folding",
+    "age": "old"
+  },
+  "wubai": {
+    "outfit": "coat",
+    "hair": "long",
+    "accessory": "sunglasses",
+    "faceStyle": "long",
+    "primary": "#443e36",
+    "secondary": "#b3885e",
+    "details": [
+      "leather"
+    ],
+    "referenceCue": "长卷发、墨镜、深色长外套",
+    "faceParams": {
+      "width": 0.96,
+      "height": 1.09,
+      "noseWidth": 1.03,
+      "eyeHeight": 0.76,
+      "mouthWidth": 0.96,
+      "jaw": 0.92
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1db411j78C/",
+      "https://www.bilibili.com/video/BV1TB4y1C7sH/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "zhoujielun": {
+    "outfit": "jacket",
+    "hair": "emo",
+    "accessory": "none",
+    "faceStyle": "oval",
+    "primary": "#464a59",
+    "secondary": "#b4becb",
+    "details": [
+      "leather"
+    ],
+    "referenceCue": "斜刘海、窄眼、舞台夹克",
+    "faceParams": {
+      "width": 1.0,
+      "height": 1.02,
+      "noseWidth": 0.96,
+      "eyeHeight": 0.6,
+      "mouthWidth": 1.01,
+      "jaw": 0.96
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV12u411C7u5/",
+      "https://www.bilibili.com/video/BV1Ex411K7Wc/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "composed"
+  },
+  "vitas": {
+    "outfit": "coat",
+    "hair": "short",
+    "accessory": "none",
+    "faceStyle": "soft",
+    "primary": "#7689a8",
+    "secondary": "#dde5ef",
+    "details": [
+      "sequins"
+    ],
+    "referenceCue": "短发、细长眼、银蓝舞台外套",
+    "faceParams": {
+      "width": 0.94,
+      "height": 0.96,
+      "noseWidth": 0.87,
+      "eyeHeight": 0.68,
+      "mouthWidth": 0.98,
+      "jaw": 0.88
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV1Jh63BAEux/"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "shy"
+  },
+  "wukong": {
+    "outfit": "armor",
+    "hair": "monkeyfur",
+    "accessory": "none",
+    "faceStyle": "sharp",
+    "primary": "#c18d30",
+    "secondary": "#cf5135",
+    "details": [
+      "lamellar"
+    ],
+    "referenceCue": "猴脸、金箍、虎纹裙与尾巴",
+    "faceParams": {
+      "width": 0.92,
+      "height": 1.02,
+      "noseWidth": 0.9,
+      "eyeHeight": 0.79,
+      "mouthWidth": 0.91,
+      "jaw": 0.83
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV19K411M7L8/",
+      "https://www.bilibili.com/video/BV1kp4y1x7hj/",
+      "https://www.jammyfm.com/p/236981.html"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "alert"
+  },
+  "tangseng": {
+    "outfit": "robe",
+    "hair": "bald",
+    "accessory": "none",
+    "faceStyle": "soft",
+    "primary": "#b93e32",
+    "secondary": "#dfb35c",
+    "details": [
+      "embroidered"
+    ],
+    "referenceCue": "五叶法帽、金线袈裟、九环杖",
+    "faceParams": {
+      "width": 0.95,
+      "height": 0.96,
+      "noseWidth": 0.87,
+      "eyeHeight": 1.03,
+      "mouthWidth": 0.98,
+      "jaw": 0.88
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV19K411M7L8/",
+      "https://www.bilibili.com/video/BV1Zs411B7ev/",
+      "https://www.jammyfm.com/p/236981.html"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "shy"
+  },
+  "bajie": {
+    "outfit": "robe",
+    "hair": "bald",
+    "accessory": "none",
+    "faceStyle": "wide",
+    "primary": "#554d44",
+    "secondary": "#c19b70",
+    "details": [
+      "patches"
+    ],
+    "referenceCue": "猪鼻、垂耳、大肚、九齿钉耙",
+    "faceParams": {
+      "width": 1.2,
+      "height": 0.93,
+      "noseWidth": 1.32,
+      "eyeHeight": 0.7,
+      "mouthWidth": 1.18,
+      "jaw": 1.23
+    },
+    "referenceUrls": [
+      "https://www.bilibili.com/video/BV19K411M7L8/",
+      "https://www.bilibili.com/video/BV1kp4y1x7hj/",
+      "https://www.bilibili.com/video/BV1eZqiY8EiP/",
+      "https://www.jammyfm.com/p/236981.html"
+    ],
+    "inferred": "风格化比例、背面服饰和道具装饰；不作为真人扫描肖像",
+    "temperament": "buoyant"
+  }
+}
