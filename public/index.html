@@ -7,6 +7,7 @@
   <title>All-Star Brawl · 全明星大乱斗</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/style.css">
+  <link rel="modulepreload" href="/shared/portraits.js">
   <script type="importmap">{"imports":{"three":"/vendor/build/three.module.js","three/addons/":"/vendor/examples/jsm/"}}</script>
   <script type="module" src="/game.js"></script>
 </head>
@@ -16,7 +17,7 @@
   <div id="flash" aria-hidden="true"></div>
   <header class="topbar">
     <a class="brand" href="/" aria-label="回到首页"><span class="brand-mark">A<span>✦</span></span><span>ALL-STAR<br><b>BRAWL</b></span></a>
-    <div class="top-meta"><span class="build">PROTOTYPE / 002</span><span id="network" class="network">连接中</span><button id="sound" class="icon-button" aria-label="开启声音" aria-pressed="false">声音 关</button></div>
+    <div class="top-meta"><span class="build">PROTOTYPE / 003</span><span id="network" class="network">连接中</span><button id="sound" class="icon-button" aria-label="开启声音" aria-pressed="false">声音 关</button></div>
   </header>
 
   <main id="home" class="home">
@@ -36,18 +37,22 @@
 
     <section class="roster" aria-label="选择角色">
       <div class="roster-heading"><p class="eyebrow">CHOOSE YOUR STAR</p><span id="model-status">角色加载中</span></div>
-      <div class="character-cards" role="group" aria-label="角色列表">
-        <button class="character-card selected" data-character="ikun" aria-pressed="true"><span class="card-num">01</span><strong>IKUN</strong><span>节奏练习生</span><i class="card-dot"></i></button>
-        <button class="character-card" data-character="wang" aria-pressed="false"><span class="card-num">02</span><strong>王司徒</strong><span>语言艺术家</span><i class="card-dot"></i></button>
-        <button class="character-card" data-character="lubu" aria-pressed="false"><span class="card-num">03</span><strong>吕布</strong><span>无双猛将</span><i class="card-dot"></i></button>
+      <div id="quick-roster" class="character-cards" role="group" aria-label="常用角色"></div>
+      <button id="browse-roster" class="secondary browse-roster">浏览全明星图鉴 <span id="roster-count"></span> ↗</button>
+      <div class="preview-stage">
+        <div id="preview-window" class="preview-window" aria-hidden="true"></div>
+        <figure id="photo-reference" class="photo-reference" hidden>
+          <div class="photo-reference-frame"><img id="photo-reference-image" class="portrait-image" alt="人物照片对照"></div>
+          <figcaption><span>照片对照</span><a id="photo-reference-source" target="_blank" rel="noopener noreferrer">照片来源 ↗</a></figcaption>
+        </figure>
       </div>
-      <div class="character-caption"><div><p class="eyebrow">SIGNATURE MOVE</p><h2 id="special-name">节奏暴扣</h2><p id="character-description">银发、背带与篮球。用一记暴扣，把节奏打进对手的回合。</p></div><button id="preview-move" class="round-button" aria-label="播放角色动作">▶</button></div>
+      <div class="character-caption"><div><p id="selected-title" class="eyebrow">IKUN · 篮球</p><h2 id="special-name">节奏暴扣</h2><p id="character-description">银发、背带与篮球。用一记暴扣，把节奏打进对手的回合。</p><a id="character-origin" class="character-origin" target="_blank" rel="noopener noreferrer"></a></div><button id="preview-move" class="round-button" aria-label="播放角色动作">▶</button></div>
       <div class="preview-tools">
         <label>动作 <select id="preview-action" aria-label="预览动作"><option value="idle">待机</option><option value="attack">快攻</option><option value="heavy">重击</option><option value="guard">格挡</option><option value="special" selected>绝招</option><option value="hurt">受击</option><option value="victory">庆祝</option></select></label>
         <label>表情 <select id="preview-expression" aria-label="预览表情"><option value="auto">自然</option><option value="angry">生气</option><option value="hurt">疼痛</option><option value="smile">开心</option></select></label>
         <button id="preview-closeup" class="icon-button" aria-pressed="false">查看表情</button>
       </div>
-      <div class="preview-footer"><span>原创角色 / 表情与骨骼动作</span><span>拖动查看 ↔</span></div>
+      <div class="preview-footer"><span id="preview-type">照片脸 / 表情与骨骼动作</span><span>拖动查看 ↔</span></div>
     </section>
   </main>
 
@@ -74,6 +79,14 @@
   <div id="toast" class="toast" role="status" hidden></div>
   <footer id="home-footer" class="home-footer"><span>ALL-STAR BRAWL © 2026</span><span>不同次元，同一擂台。 <i>✦</i></span><button id="help" class="text-button">怎么玩 ↗</button></footer>
   <dialog id="help-dialog"><button id="close-help" class="icon-button close-help" aria-label="关闭玩法说明">×</button><p class="eyebrow">HOW TO BRAWL</p><h2>每一回合，都有选择。</h2><p>双方在 8 秒内各选一招并锁定；先锁定的人看不到对方选择。时间用尽则自动格挡。随后按时间轴依次播放动作，同时结算双方伤害。</p><ul><li>快攻：18 伤害，积攒 1 气势。</li><li>重击：30 伤害，消耗 1 气势；对格挡仍造成 24 伤害。</li><li>格挡：减伤 70%，积攒 1 气势。</li><li>绝招：消耗 2 气势，释放角色专属攻击。</li></ul><p>每局最多 20 回合；超时比较剩余生命百分比。先赢两局获胜。双 KO 或生命比例相同则平局重开该局。对战为固定站位的第一人称擂台。</p><p class="micro">Chrome / Edge 推荐。主机首次安装需联网，之后同局域网对战无需外部服务。</p></dialog>
+  <dialog id="roster-dialog" class="roster-dialog" aria-labelledby="roster-title">
+    <div class="roster-dialog-heading"><div><p class="eyebrow">ALL-STAR ARCHIVE</p><h2 id="roster-title">每一种梗，都有主场。</h2></div><button id="close-roster" class="icon-button" aria-label="关闭角色图鉴">×</button></div>
+    <input id="roster-search" type="search" aria-label="搜索角色" placeholder="搜索华强、郝哥、五五开…" autocomplete="off">
+    <div id="roster-groups" class="roster-groups" role="group" aria-label="角色分类"></div>
+    <p id="roster-results" class="micro" aria-live="polite"></p>
+    <div id="roster-grid" class="roster-grid" role="group" aria-label="全明星角色列表"></div>
+    <p class="micro archive-note">按人物与出处整理的持续扩展名册。别名归并，招式为原创竞技设定。</p>
+  </dialog>
   <noscript>请开启 JavaScript 以运行 All-Star Brawl。</noscript>
 </body>
 </html>

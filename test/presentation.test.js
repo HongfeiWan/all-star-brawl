@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { attackEnvelope, dampedSpring, opponentApproach, presentationTime, WEAPON_CONTACT } from '../shared/presentation.js';
+import { attackEnvelope, dampedSpring, opponentApproach, opponentOffsetX, presentationTime, WEAPON_CONTACT } from '../shared/presentation.js';
 import { TIMING } from '../shared/catalog.js';
 
 test('every attack contacts at the server hit, has anticipation and recovers by the slot boundary', () => {
@@ -55,10 +55,11 @@ test('all measured weapon contacts stay in front of the camera and blocked tips 
       const reach = opponentApproach(character, action);
       const contactZ = -1.8 + reach + point[2];
       assert.ok(3.4 - contactZ >= .3, `${character} ${action} must not pierce the camera`);
-      assert.ok(Math.abs(point[0]) <= .35, `${character} ${action} must contact inside the opponent silhouette`);
+      const contactX = point[0] + opponentOffsetX(character, action);
+      assert.ok(Math.abs(contactX) <= .35, `${character} ${action} must meet the aim line`);
       const visibleHalfHeight = (3.4 - contactZ) * Math.tan(55 * Math.PI / 360);
       assert.ok(Math.abs(point[1] - 1.72) <= visibleHalfHeight, `${character} ${action} contact must stay vertically visible`);
-      assert.ok(Math.abs(point[0]) <= visibleHalfHeight * 4 / 3, `${character} ${action} contact must stay horizontally visible`);
+      assert.ok(Math.abs(contactX) <= visibleHalfHeight * 4 / 3, `${character} ${action} contact must stay horizontally visible`);
       const blockedReach = opponentApproach(character, action, true);
       assert.ok(blockedReach <= reach);
       assert.ok(-1.8 + blockedReach + point[2] <= 2.560001, 'blocked weapons must stop outside the forearms');

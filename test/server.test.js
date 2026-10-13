@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { once } from 'node:events';
 import { WebSocket } from 'ws';
 import { createArena } from '../src/server.js';
+import { CHARACTERS } from '../shared/catalog.js';
 
 async function arena(t, options) {
   const app = createArena(options);
@@ -78,6 +79,32 @@ test('practice and timeout work without another browser', async t => {
   assert.equal(app.rooms.size, 0);
 });
 
+test('Huaqiang and the melon vendor can play through a real two-client turn with hidden commitments', async t => {
+  const app = await arena(t, { planMs: 12000 });
+  const a = await client(app.url), b = await client(app.url);
+  a.send({ type: 'create', name: '华强玩家', character: 'huaqiang' });
+  const lobby = await a.wait(state('lobby'));
+  assert.equal(lobby.room.players[0].character, 'huaqiang');
+  b.send({ type: 'join', name: '瓜摊玩家', character: 'guatan', code: lobby.room.code });
+  const joined = await b.wait(state('lobby'));
+  assert.deepEqual(joined.room.players.map(p => p.character), ['huaqiang', 'guatan']);
+  a.send({ type: 'start' }); await a.wait(state('plan')); await b.wait(state('plan'));
+  a.send({ type: 'choose', action: 'heavy' });
+  const secret = await b.wait(m => state('plan')(m) && m.room.players.find(p => p.id === a.id).locked);
+  assert.equal(secret.room.players.find(p => p.id === a.id).choice, null);
+  assert.equal(secret.room.timeline, null);
+  b.send({ type: 'choose', action: 'guard' });
+  const execute = await a.wait(state('execute'));
+  assert.equal(execute.room.timeline.events.find(e => e.actor === a.id).damage, 24);
+  assert.equal(execute.room.players.find(p => p.id === b.id).hp, CHARACTERS.guatan.hp);
+  const settled = await b.wait(m => state('plan')(m) && m.room.turn === 2);
+  assert.equal(settled.room.players.find(p => p.id === b.id).hp, CHARACTERS.guatan.hp - 24);
+  assert.equal(settled.room.players.find(p => p.id === a.id).energy, 0);
+  a.send({ type: 'leave' }); await a.wait(m => m.type === 'left');
+  b.send({ type: 'leave' }); await b.wait(m => m.type === 'left');
+  assert.equal(app.rooms.size, 0);
+});
+
 test('reject malformed input, full rooms, forged damage and inaccessible server files', async t => {
   const app = await arena(t);
   const a = await client(app.url), b = await client(app.url), c = await client(app.url);
@@ -108,6 +135,20 @@ test('reject malformed input, full rooms, forged damage and inaccessible server 
   const presentation = await fetch(app.url + '/shared/presentation.js');
   assert.equal(presentation.status, 200);
   assert.match(await presentation.text(), /export function presentationTime/);
+  for (const [pathname, declaration] of [
+    ['/shared/roster.js', 'export const ROSTER'],
+    ['/shared/roster-contacts.js', 'export const ROSTER_MOTIONS'],
+  ]) {
+    const rosterModule = await fetch(app.url + pathname);
+    assert.equal(rosterModule.status, 200, pathname);
+    assert.ok((await rosterModule.text()).includes(declaration), pathname);
+  }
+  for (const pathname of ['/assets/roster/huaqiang.glb', '/assets/motions/knife.glb']) {
+    const rosterAsset = await fetch(app.url + pathname);
+    assert.equal(rosterAsset.status, 200, pathname);
+    assert.equal(rosterAsset.headers.get('content-type'), 'model/gltf-binary');
+    await rosterAsset.arrayBuffer();
+  }
 });
 
 test('cross-origin WebSocket attempts are refused', async t => {

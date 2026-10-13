@@ -42,3 +42,54 @@
   .preview-tools { gap: 7px; flex-wrap: wrap; }
   .preview-tools select { padding-inline: 5px; min-width: 61px; }
 }
+.roster { min-height:730px; pointer-events:none; }
+.roster button,.roster select,.roster a { pointer-events:auto; }
+.character-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; margin-top:14px; }
+.character-card { padding:10px 12px; min-height:77px; }
+.character-card strong { font-size:15px; margin:5px 0 3px; }
+.browse-roster { margin-top:10px; padding:10px 14px; text-align:left; font-size:11px; display:flex; justify-content:space-between; gap:12px; }
+.browse-roster span { margin-left:auto; color:var(--accent); }
+.preview-window { min-height:300px; flex:1; }
+.character-caption { margin-top:0; margin-bottom:14px; }
+.character-origin { display:inline-block; font-size:9px; color:#8595a7; margin-top:8px; max-width:100%; line-height:1.6; }
+.character-origin:hover { color:var(--accent); }
+#character-description { font-size:11px; line-height:1.7; color:#9ca3b5; max-width:470px; margin:0; }
+.home-footer { position:relative; }
+.roster-dialog { width:min(1120px,94vw); max-height:88vh; padding:25px; }
+.roster-dialog-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+.roster-dialog-heading h2 { margin:0 0 16px; font-size:28px; }
+.roster-dialog-heading .eyebrow { margin-bottom:8px; }
+#roster-search { width:100%; font-size:13px; }
+.roster-groups { display:flex; flex-wrap:wrap; gap:7px; margin-top:13px; }
+.roster-groups button { border:1px solid var(--line); border-radius:20px; padding:7px 12px; background:#ffffff05; font-size:11px; }
+.roster-groups button[aria-pressed=true] { border-color:var(--lime); color:var(--lime); }
+.roster-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; overflow:auto; max-height:49vh; padding:2px 5px 6px 2px; }
+.roster-grid .character-card { min-height:106px; }
+.roster-grid .character-card strong { font-size:14px; letter-spacing:0; }
+.roster-grid .character-card .card-origin { display:block; font-size:9px; color:#78879a; line-height:1.4; margin-top:5px; }
+.archive-note { margin-bottom:0; }
+.portrait-image { width:100%; height:100%; display:block; object-fit:cover; object-position:var(--portrait-position,50% 50%); transform:scale(var(--portrait-scale,1)); transform-origin:var(--portrait-position,50% 50%); }
+.card-portrait { position:absolute; left:10px; top:50%; transform:translateY(-50%); width:43px; height:53px; border:1px solid #ffffff26; border-radius:5px; overflow:hidden; background:#27313c; }
+.character-card.has-portrait { padding-left:63px; }
+.character-card.has-portrait strong { font-size:13px; letter-spacing:0; }
+.preview-stage { position:relative; min-height:300px; flex:1; }
+.preview-stage .preview-window { position:absolute; inset:0; min-height:0; height:100%; }
+.photo-reference { position:absolute; top:12px; right:8px; width:88px; margin:0; padding:4px; border:1px solid #ffffff1c; border-radius:7px; background:#19212ae8; }
+.photo-reference-frame { position:relative; width:78px; height:95px; border-radius:4px; overflow:hidden; background:#27313c; }
+.photo-reference figcaption { display:flex; flex-direction:column; gap:3px; padding:6px 1px 2px; font-size:9px; line-height:1.4; color:#acb8c5; }
+.photo-reference-source { font-size:8px; }
+.photo-reference a { color:#99b6c5; font-size:8px; }
+.photo-reference a:hover { color:var(--accent); }
+@media(max-width:900px) { .roster-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } .roster { min-height:730px; } }
+@media(max-width:650px) {
+  .roster { min-height:760px; }
+  .preview-window { min-height:310px; }
+  .preview-stage { min-height:310px; }
+  .preview-stage .preview-window { min-height:0; }
+  .photo-reference { right:2px; width:76px; }
+  .photo-reference-frame { width:66px; height:82px; }
+  .character-card strong { font-size:13px; }
+  .roster-dialog { padding:16px; }
+  .roster-dialog-heading h2 { font-size:22px; }
+  .roster-grid { grid-template-columns:repeat(2,minmax(0,1fr)); max-height:48vh; }
+}

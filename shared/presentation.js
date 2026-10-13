@@ -1,4 +1,5 @@
 import { TIMING } from './catalog.js';
+import { ROSTER_CONTACT } from './roster-contacts.js';
 
 const clamp = value => Math.max(0, Math.min(1, value));
 const ease = (from, to, value) => {
@@ -41,14 +42,21 @@ export function dampedSpring(position, velocity, dt, frequency = 19) {
 
 // Measured from the skinned weapon tips at the exported 620 ms contact sample.
 export const WEAPON_CONTACT = Object.freeze({
+  ...ROSTER_CONTACT,
   ikun: { strike: [-.099, 1.423, .998], heavy: [.277, 1.377, .891], special: [-.131, 1.491, 1.014] },
   wang: { strike: [.272, 1.683, .738], heavy: [-.208, 1.850, .854], special: [.246, 1.521, .815] },
   lubu: { strike: [.038, 1.602, 2.218], heavy: [-.067, 1.611, 2.216], special: [-.319, 1.649, 1.632] },
 });
 
 export function opponentApproach(character, action, blocked = false) {
-  const approach = character === 'lubu' ? action === 'special' ? 2.9 : 2.6 : character === 'wang' ? 3.35 : 3.5;
   const contact = WEAPON_CONTACT[character]?.[action];
+  const safeDistance = Math.max(1.1, Math.abs((contact?.[1] ?? 1.5) - 1.72) / Math.tan(55 * Math.PI / 360) + .15);
+  const approach = character === 'lubu' ? action === 'special' ? 2.9 : 2.6 : character === 'wang' ? 3.35 : character === 'ikun' ? 3.5 : Math.max(0, Math.min(3.85, 5.2 - (contact?.[2] ?? 1) - safeDistance));
   // A block meets foreground forearms at z 2.56 from the opponent's rest z -1.8.
   return blocked && contact ? Math.min(approach, 4.36 - contact[2]) : approach;
+}
+
+// Shared attack clips retain their arc; the step places each prop's tip on the aim line.
+export function opponentOffsetX(character, action) {
+  return ['ikun', 'wang', 'lubu'].includes(character) ? 0 : -(WEAPON_CONTACT[character]?.[action]?.[0] ?? 0);
 }

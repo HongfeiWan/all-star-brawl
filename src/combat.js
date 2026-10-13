@@ -33,7 +33,7 @@ export function resolveTurn(players, turn) {
     const raw = action === 'special' ? CHARACTERS[player.character].damage : ACTIONS[action].damage;
     const amount = Math.round(raw * (defending ? (action === 'heavy' ? 0.8 : 0.3) : 1));
     damage[target] += amount;
-    if (action === 'special' && player.character === 'wang') energy[target] = Math.max(0, energy[target] - 1);
+    if (action === 'special') energy[target] = Math.max(0, energy[target] - (CHARACTERS[player.character].drain || 0));
     return {
       actor: player.id, target: players[target].id, action, damage: amount, blocked: defending && raw > 0,
       title: action === 'special' ? CHARACTERS[player.character].special : ACTIONS[action].name,

@@ -799,38 +799,44 @@ def face_controls(body):
         assert any((a.co - b.co).length > .0001 for a, b in zip(body.data.vertices, key.data)), name + ' facial control is empty'
 
 
-for character in ['ikun', 'wang', 'lubu']:
-    parts = []
-    base(character)
-    tag_face_parts()
-    bpy.ops.object.select_all(action='DESELECT')
-    for obj in parts:
-        obj.select_set(True)
-    bpy.context.view_layer.objects.active = parts[0]
-    bpy.ops.object.join()
-    body = bpy.context.object
-    body.name = character + '_body'
-    face_controls(body)
-    body.select_set(False)
-    armature = rig(character)
-    modifier = body.modifiers.new('Skeleton', 'ARMATURE')
-    modifier.object = armature
-    body.parent = armature
-    animate(armature, character)
-    bpy.context.scene.frame_set(1)
-    bpy.ops.object.select_all(action='DESELECT')
-    body.select_set(True)
-    armature.select_set(True)
-    bpy.context.view_layer.objects.active = armature
-    bpy.ops.export_scene.gltf(filepath=str(OUT / (character + '.glb')), export_format='GLB', use_selection=True,
-                              export_animations=True, export_animation_mode='NLA_TRACKS', export_skins=True,
-                              export_force_sampling=True, export_nla_strips=True)
-    body.data.calc_loop_triangles()
-    assert len(body.data.loop_triangles) < 80000, character + ' exceeded the triangle budget'
-    print(f'{character}: {len(body.data.vertices)} vertices / {len(body.data.loop_triangles)} triangles; 16 bones; 7 clips')
-    armature.location.x = {'ikun': -2.4, 'wang': 0, 'lubu': 2.4}[character]
+def main():
+    global parts
+    for character in ['ikun', 'wang', 'lubu']:
+        parts = []
+        base(character)
+        tag_face_parts()
+        bpy.ops.object.select_all(action='DESELECT')
+        for obj in parts:
+            obj.select_set(True)
+        bpy.context.view_layer.objects.active = parts[0]
+        bpy.ops.object.join()
+        body = bpy.context.object
+        body.name = character + '_body'
+        face_controls(body)
+        body.select_set(False)
+        armature = rig(character)
+        modifier = body.modifiers.new('Skeleton', 'ARMATURE')
+        modifier.object = armature
+        body.parent = armature
+        animate(armature, character)
+        bpy.context.scene.frame_set(1)
+        bpy.ops.object.select_all(action='DESELECT')
+        body.select_set(True)
+        armature.select_set(True)
+        bpy.context.view_layer.objects.active = armature
+        bpy.ops.export_scene.gltf(filepath=str(OUT / (character + '.glb')), export_format='GLB', use_selection=True,
+                                  export_animations=True, export_animation_mode='NLA_TRACKS', export_skins=True,
+                                  export_force_sampling=True, export_nla_strips=True)
+        body.data.calc_loop_triangles()
+        assert len(body.data.loop_triangles) < 80000, character + ' exceeded the triangle budget'
+        print(f'{character}: {len(body.data.vertices)} vertices / {len(body.data.loop_triangles)} triangles; 16 bones; 7 clips')
+        armature.location.x = {'ikun': -2.4, 'wang': 0, 'lubu': 2.4}[character]
 
-bpy.ops.object.select_all(action='DESELECT')
-bpy.context.scene.frame_start, bpy.context.scene.frame_end = 0, 200
-bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE / 'all-stars.blend'))
-print('Created 3 authored characters; contact phase', CONTACT)
+    bpy.ops.object.select_all(action='DESELECT')
+    bpy.context.scene.frame_start, bpy.context.scene.frame_end = 0, 200
+    bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE / 'all-stars.blend'))
+    print('Created 3 authored characters; contact phase', CONTACT)
+
+
+if __name__ == '__main__':
+    main()

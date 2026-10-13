@@ -10,7 +10,7 @@ import { CHARACTERS, TIMING, EXECUTION_MS } from '../shared/catalog.js';
 import { newFighter, resetRound, canChoose, resolveTurn, roundWinner } from './combat.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.glb': 'model/gltf-binary', '.svg': 'image/svg+xml', '.png': 'image/png' };
+const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.glb': 'model/gltf-binary', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp' };
 
 export function lanAddresses(port) {
   return Object.values(networkInterfaces()).flat().filter(a => a.family === 'IPv4' && !a.internal).map(a => `http://${a.address}:${port}`);
@@ -19,7 +19,7 @@ export function lanAddresses(port) {
 function staticFile(url) {
   let pathname;
   try { pathname = decodeURIComponent(new URL(url, 'http://arena.local').pathname); } catch { return null; }
-  if (['/shared/catalog.js', '/shared/presentation.js'].includes(pathname)) return path.join(root, pathname.slice(1));
+  if (['/shared/catalog.js', '/shared/presentation.js', '/shared/roster.js', '/shared/roster-contacts.js', '/shared/portraits.js'].includes(pathname)) return path.join(root, pathname.slice(1));
   const vendor = pathname.startsWith('/vendor/');
   const base = path.join(root, vendor ? 'node_modules/three' : 'public');
   const suffix = vendor ? pathname.slice(8) : (pathname === '/' ? 'index.html' : pathname.slice(1));
@@ -35,7 +35,7 @@ export function createArena({ planMs = TIMING.plan, roundBreakMs = TIMING.roundB
   const server = http.createServer(async (req, res) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'same-origin');
-    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'");
+    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self' blob:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'");
     if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405); res.end(); return; }
     if (req.url === '/api/lan') {
       const port = server.address()?.port;

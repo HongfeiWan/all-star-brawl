@@ -1,23 +1,15 @@
-export const CHARACTERS = Object.freeze({
-  ikun: {
-    name: 'IKUN', subtitle: '节奏练习生', color: '#a89dff', hp: 108,
-    weapon: '篮球', special: '节奏暴扣', damage: 34,
-    description: '银发、背带与篮球。用一记暴扣，把节奏打进对手的回合。',
-    quote: '下一回合，轮到我的主场。',
-  },
-  wang: {
-    name: '王司徒', subtitle: '语言艺术家', color: '#6edbc9', hp: 116,
-    weapon: '羽扇', special: '言语破防', damage: 30,
-    description: '羽扇一挥，话锋比拳锋更快。绝招额外消耗对手 1 点气势。',
-    quote: '且听老夫一言。',
-  },
-  lubu: {
-    name: '吕布', subtitle: '无双猛将', color: '#ff896d', hp: 100,
-    weapon: '方天画戟', special: '天下无双', damage: 40,
-    description: '赤甲、双翎与画戟。生命略低，但绝招拥有最强的爆发。',
-    quote: '这一戟，谁敢接？',
-  },
-});
+import { ROSTER } from './roster.js';
+import { ROSTER_MOTIONS, ROSTER_VISUAL } from './roster-contacts.js';
+export { ROSTER, GROUPS } from './roster.js';
+
+const originals = new Set(['ikun', 'wang', 'lubu']);
+export const CHARACTERS = Object.freeze(Object.fromEntries(ROSTER.map(row => [row.id, Object.freeze({
+  ...row,
+  asset: originals.has(row.id) ? `/assets/${row.id}.glb` : `/assets/roster/${row.id}.glb`,
+  motion: ROSTER_MOTIONS[row.id] || row.motion,
+  visual: ROSTER_VISUAL[row.id],
+  drain: row.id === 'wang' ? 1 : (row.drain || 0),
+})])));
 
 export const ACTIONS = Object.freeze({
   strike: { name: '快攻', label: '蓄势一击', cost: 0, damage: 18, gain: 1, key: '1', detail: '造成 18 伤害 · 获得 1 气势' },

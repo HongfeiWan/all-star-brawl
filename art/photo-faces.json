@@ -1,0 +1,26 @@
+{
+  "ikun": {
+    "image": "public/assets/portraits/ikun.jpg",
+    "face": [395, 285, 470, 540],
+    "eyes": [[622, 465], [783, 466]],
+    "nose": [701, 595],
+    "mouth": [[648, 679], [758, 681]],
+    "outline": { "chin": [625, 740], "mouth": [485, 790], "nose": [450, 810], "eyes": [420, 824], "forehead": [514, 810] }
+  },
+  "huaqiang": {
+    "image": "public/assets/portraits/huaqiang-frontal.png",
+    "face": [122, 16, 81, 129],
+    "eyes": [[133, 55], [171, 55]],
+    "nose": [146, 81],
+    "mouth": [[137, 105], [162, 105]],
+    "outline": { "chin": [143, 185], "mouth": [127, 199], "nose": [126, 201], "eyes": [127, 201], "forehead": [134, 192] }
+  },
+  "guatan": {
+    "image": "public/assets/portraits/guatan.png",
+    "face": [213, 45, 486, 500],
+    "eyes": [[379, 229], [563, 214]],
+    "nose": [469, 324],
+    "mouth": [[397, 423], [566, 414]],
+    "outline": { "chin": [389, 556], "mouth": [300, 636], "nose": [256, 658], "eyes": [254, 659], "forehead": [302, 633] }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "all-star-brawl",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "A first-person, turn-based meme-character arena for LAN duels.",
   "type": "module",
