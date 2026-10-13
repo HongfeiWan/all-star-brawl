@@ -400,7 +400,7 @@ function characterButton(id, archive = false) {
   const portrait = portraitFor(id);
   if (portrait) {
     const frame = document.createElement('span'); frame.className = 'card-portrait'; frame.hidden = true;
-    const image = document.createElement('img'); image.className = 'portrait-image'; image.loading = 'lazy';
+    const image = document.createElement('img'); image.className = 'portrait-image';
     framePortrait(image, portrait);
     image.onload = () => { frame.hidden = false; button.classList.add('has-portrait'); };
     image.onerror = () => { frame.remove(); button.classList.remove('has-portrait'); };

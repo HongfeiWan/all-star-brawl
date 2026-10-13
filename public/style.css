@@ -82,6 +82,8 @@
 .photo-reference a:hover { color:var(--accent); }
 @media(max-width:900px) { .roster-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } .roster { min-height:730px; } }
 @media(max-width:650px) {
+  .card-portrait { left:8px; width:30px; height:42px; }
+  .character-card.has-portrait { padding-left:46px; padding-right:7px; }
   .roster { min-height:760px; }
   .preview-window { min-height:310px; }
   .preview-stage { min-height:310px; }
