@@ -5,7 +5,7 @@
 | 参考 | 借鉴内容 | 对本项目的取舍 |
 | --- | --- | --- |
 | [Three.js 官方骨骼动画混合示例](https://github.com/mrdoob/three.js/blob/dev/examples/webgl_animation_skinning_blending.html) | 骨骼动画、片段切换和混合 | 使用 GLB + AnimationMixer，原创建模与关键帧 |
-| [Three.js Animation System](https://threejs.org/manual/pages/animation-system.html) | 动画播放器、单次动作和循环动作 | 动作间 120ms 淡入，待机与庆祝循环 |
+| [Three.js Animation System](https://threejs.org/manual/pages/animation-system.html) | 动画播放器、单次动作和循环动作 | 动作间 100ms 淡入，待机与庆祝循环 |
 | [LukeTsengTW/threejs-multiplayer-fps](https://github.com/LukeTsengTW/threejs-multiplayer-fps) | 浏览器第一人称房间、服务端权威状态、客户端演出 | 用更小的 Node HTTP + ws 实现回合对战，无需 FPS 射击与实时跑图系统 |
 | [websockets/ws](https://github.com/websockets/ws) | WebSocket 服务端、心跳与数据大小限制 | 服务端房间通信使用该依赖 |
 | [IYanel-DEV/FirstPerson-Multiplayer](https://github.com/IYanel-DEV/FirstPerson-Multiplayer) | Godot 第一人称多人模板 | 作为桌面引擎方案参考；首版浏览器入口更适合同局域网直接加入 |

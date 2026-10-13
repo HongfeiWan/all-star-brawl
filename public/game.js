@@ -2,15 +2,17 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
 import { CHARACTERS, ACTIONS, TIMING } from '/shared/catalog.js';
+import { attackEnvelope, dampedSpring, opponentApproach, presentationTime, WEAPON_CONTACT } from '/shared/presentation.js';
 
 const $ = id => document.getElementById(id);
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const canvas = $('arena');
 let selected = 'ikun', choice = 'strike', room = null, you = null, connected = false;
 let clockOffset = 0, socket, toastTimer, soundEnabled = false, audio;
-let previewActor, opponent, opponentId, presentation = 'home', previewAngle = -.18;
+let previewActor, opponent, opponentId, presentation = 'home', previewAngle = -.18, previewCloseup = false, previewExpression = 'auto';
 let yaw = 0, pitch = 0, drag = null, viewCharacter = null, lastTimeline = null;
-let shake = 0, flash = 0, freezeUntil = 0, weaponMotion = null, shownHp = new Map();
+let flash = 0, freezeUntil = 0, freezeStartedAt = 0, weaponMotion = null, shownHp = new Map();
+const recoil = Object.fromEntries(['x', 'y', 'z', 'roll'].map(axis => [axis, { position: 0, velocity: 0 }]));
 const startedEvents = new Set(), hitEvents = new Set(), logLines = [], keys = new Set();
 const models = new Map();
 const actors = new Set();
@@ -52,27 +54,28 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.3;
-renderer.setClearColor(0x10131c);
+renderer.toneMappingExposure = 1.05;
+renderer.autoClear = false;
+renderer.setClearColor(0x111720);
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x10131c, .035);
+scene.fog = new THREE.FogExp2(0x111720, .03);
 const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, .05, 90);
 const previewCamera = new THREE.PerspectiveCamera(34, 1, .05, 50);
-const hemi = new THREE.HemisphereLight(0xc9d2ff, 0x27223a, 2.4);
+const hemi = new THREE.HemisphereLight(0xbfd2e1, 0x22232a, 1.65);
 scene.add(hemi);
-const key = new THREE.DirectionalLight(0xffefdc, 3.6);
-key.position.set(3, 8, 5);
+const key = new THREE.DirectionalLight(0xffdec0, 2.65);
+key.position.set(-3, 7, 5);
 key.castShadow = true;
 key.shadow.mapSize.set(1024, 1024);
 key.shadow.camera.left = key.shadow.camera.bottom = -9;
 key.shadow.camera.right = key.shadow.camera.top = 9;
 key.shadow.normalBias = .035;
 scene.add(key);
-const rim = new THREE.DirectionalLight(0x9686ff, 3);
-rim.position.set(-4, 4, -4);
+const rim = new THREE.DirectionalLight(0x88bbd7, 1.9);
+rim.position.set(4, 4, -4);
 scene.add(rim);
-const fill = new THREE.PointLight(0xc5ff74, 24, 20, 2);
-fill.position.set(2, 2.8, -1);
+const fill = new THREE.PointLight(0xedc9a0, 8, 20, 2);
+fill.position.set(-2, 2.8, 2);
 scene.add(fill);
 
 function mesh(geometry, color, metalness = 0, roughness = .6) {
@@ -89,7 +92,7 @@ for (const radius of [2.3, 5.8, 8]) {
   ring.position.y = -.03;
   arena.add(ring);
 }
-const railMaterial = new THREE.MeshStandardMaterial({ color: 0xa89dff, emissive: 0x504171, emissiveIntensity: 1.4 });
+const railMaterial = new THREE.MeshStandardMaterial({ color: 0x8998aa, metalness: .65, roughness: .45, emissive: 0x263745, emissiveIntensity: .3 });
 for (let i = 0; i < 12; i++) {
   const angle = i * Math.PI / 6;
   const post = mesh(new THREE.CylinderGeometry(.035, .04, 1.1, 8), 0x40475a, .8);
@@ -124,20 +127,48 @@ podiumRing.material.emissive.set(0xa89dff);
 podiumRing.material.emissiveIntensity = .7;
 scene.add(podiumRing);
 
+const viewmodelScene = new THREE.Scene();
+const viewCamera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, .035, 12);
 const viewmodel = new THREE.Group();
-camera.add(viewmodel);
+viewmodelScene.add(viewmodel, new THREE.HemisphereLight(0xd4e2ec, 0x24262e, 1.8));
+const handKey = new THREE.DirectionalLight(0xffdfbe, 2.1);
+handKey.position.set(-3, 4, 3);
+const handFill = new THREE.DirectionalLight(0xa1c2db, .8);
+handFill.position.set(3, 1, -2);
+viewmodelScene.add(handKey, handFill);
 scene.add(camera);
 const hands = [];
 for (const side of [-1, 1]) {
   const group = new THREE.Group();
-  const sleeve = mesh(new THREE.CapsuleGeometry(.077, .26, 6, 12), 0x29253d);
+  const sleeve = mesh(new THREE.CapsuleGeometry(.073, .30, 8, 16), 0x24232c, 0, .87);
   sleeve.rotation.x = Math.PI / 2;
-  sleeve.position.z = .13;
-  const fist = mesh(new THREE.SphereGeometry(.09, 16, 12), 0xd39870);
-  fist.scale.set(1, .83, 1.25);
-  group.add(sleeve, fist);
-  group.position.set(side * .48, -.32, -.90);
-  group.rotation.z = side * -.28;
+  sleeve.position.set(0, -.028, .28);
+  const wrist = mesh(new THREE.CapsuleGeometry(.052, .10, 8, 16), 0xca9674, 0, .72);
+  wrist.rotation.x = Math.PI / 2;
+  wrist.position.z = .065;
+  const cuff = mesh(new THREE.TorusGeometry(.057, .016, 8, 24), 0x48444d, .1, .75);
+  cuff.position.z = .135;
+  const palm = mesh(new THREE.SphereGeometry(1, 24, 18), 0xca9674, 0, .72);
+  palm.scale.set(.076, .048, .086);
+  group.add(sleeve, wrist, cuff, palm);
+  for (let i = 0; i < 4; i++) {
+    const x = (i - 1.5) * .034;
+    const finger = mesh(new THREE.CapsuleGeometry(.018, .034, 6, 12), 0xc18a69, 0, .72);
+    finger.rotation.x = Math.PI / 2;
+    finger.position.set(x, -.008, -.054);
+    const knuckle = mesh(new THREE.SphereGeometry(.022, 12, 10), 0xd09a78, 0, .73);
+    knuckle.scale.y = .65;
+    knuckle.position.set(x, .025, -.055);
+    group.add(finger, knuckle);
+  }
+  const thumb = mesh(new THREE.CapsuleGeometry(.021, .047, 6, 12), 0xd09a78, 0, .73);
+  thumb.rotation.set(.85, side * .4, side * -.75);
+  thumb.position.set(side * -.061, -.013, .008);
+  group.add(thumb);
+  group.userData.sleeve = sleeve;
+  group.userData.cuff = cuff;
+  group.position.set(side * .40, -.39, -1.10);
+  group.rotation.z = side * -.20;
   viewmodel.add(group);
   hands.push(group);
 }
@@ -151,38 +182,63 @@ function setViewmodel(character) {
   }
   weapon = new THREE.Group();
   if (character === 'ikun') {
-    const ball = mesh(new THREE.SphereGeometry(.135, 24, 16), 0xd8621a, .05, .65);
+    const ball = mesh(new THREE.SphereGeometry(.112, 40, 28), 0xb6521d, 0, .86);
     weapon.add(ball);
     for (let i = 0; i < 3; i++) {
-      const seam = mesh(new THREE.TorusGeometry(.136, .003, 4, 48), 0x211622);
+      const seam = mesh(new THREE.TorusGeometry(.1125, .0023, 6, 64), 0x34241f, 0, .9);
       if (i === 1) seam.rotation.x = Math.PI / 2;
       if (i === 2) seam.rotation.y = Math.PI / 2;
       weapon.add(seam);
     }
-    weapon.position.set(.04, .07, -.04);
+    weapon.position.set(.025, .083, -.047);
   } else if (character === 'wang') {
-    const handle = mesh(new THREE.CylinderGeometry(.008, .008, .32, 8), 0xb99b5e);
+    const handle = mesh(new THREE.CylinderGeometry(.012, .014, .29, 12), 0x674a2d, .05, .72);
     weapon.add(handle);
-    for (let i = 0; i < 7; i++) {
-      const feather = mesh(new THREE.SphereGeometry(1, 12, 8), 0xf0e8d2);
-      feather.scale.set(.032, .14, .012);
-      feather.rotation.z = (i - 3) * -.15;
-      feather.position.set((i - 3) * .025, .19, 0);
-      weapon.add(feather);
+    const binding = mesh(new THREE.TorusGeometry(.016, .005, 8, 16), 0xb99757, .65, .4);
+    binding.rotation.x = Math.PI / 2; binding.position.y = .1;
+    weapon.add(binding);
+    for (let i = 0; i < 9; i++) {
+      const angle = (i - 4) * -.13;
+      const feather = mesh(new THREE.SphereGeometry(1, 20, 12), i % 2 ? 0xdacdb6 : 0xeee3ce, 0, .91);
+      feather.scale.set(.027, .145, .008);
+      feather.rotation.z = angle;
+      feather.position.set((i - 4) * .032, .235 - Math.abs(i - 4) * .011, 0);
+      const vane = mesh(new THREE.CylinderGeometry(.0018, .0012, .23, 5), 0xa89777, 0, .85);
+      vane.rotation.z = angle;
+      vane.position.copy(feather.position);
+      vane.position.z = .009;
+      weapon.add(feather, vane);
     }
-    weapon.position.set(.02, .03, -.07);
+    weapon.position.set(.012, .03, -.04);
   } else {
-    const shaft = mesh(new THREE.CylinderGeometry(.012, .014, .85, 8), 0x462430, .6);
-    const blade = mesh(new THREE.ConeGeometry(.055, .21, 4), 0xc0cbd9, .9, .25);
-    blade.position.y = .50;
-    const crescent = mesh(new THREE.TorusGeometry(.084, .018, 6, 16, Math.PI), 0xc0cbd9, .8, .3);
-    crescent.position.set(-.03, .36, 0);
-    weapon.add(shaft, blade, crescent);
-    weapon.rotation.z = -.15;
-    weapon.position.set(.05, .1, -.02);
+    const shaft = mesh(new THREE.CylinderGeometry(.013, .018, 1.3, 16), 0x3b2b25, .25, .62);
+    weapon.add(shaft);
+    for (const y of [.22, .35, .53]) {
+      const collar = mesh(new THREE.CylinderGeometry(.025, .025, .035, 16), 0xa07a3b, .7, .38);
+      collar.position.y = y; weapon.add(collar);
+    }
+    const bladeShape = new THREE.Shape();
+    bladeShape.moveTo(0, .86); bladeShape.lineTo(.044, .65); bladeShape.lineTo(.018, .54);
+    bladeShape.lineTo(-.018, .54); bladeShape.lineTo(-.044, .65); bladeShape.closePath();
+    const crescentShape = new THREE.Shape();
+    crescentShape.moveTo(-.01, .34);
+    crescentShape.bezierCurveTo(-.22, .37, -.24, .67, -.045, .75);
+    crescentShape.bezierCurveTo(-.12, .60, -.10, .47, -.01, .45);
+    crescentShape.closePath();
+    for (const shape of [bladeShape, crescentShape]) {
+      const blade = mesh(new THREE.ExtrudeGeometry(shape, { depth: .018, bevelEnabled: true, bevelThickness: .006, bevelSize: .005, bevelSegments: 2, steps: 1 }), 0xafbac2, .88, .29);
+      blade.position.z = -.009; weapon.add(blade);
+    }
+    const tassel = mesh(new THREE.CapsuleGeometry(.026, .10, 6, 12), 0x7e2430, 0, .9);
+    tassel.position.set(.045, .36, 0); tassel.rotation.z = .35; weapon.add(tassel);
+    weapon.rotation.z = -.22;
+    weapon.position.set(.035, .065, -.035);
   }
   hands[1].add(weapon);
-  for (const hand of hands) hand.children[0].material.color.set(character === 'wang' ? 0x0c6654 : character === 'lubu' ? 0x8c2732 : 0x29253d);
+  for (const hand of hands) {
+    hand.userData.sleeve.material.color.set(character === 'wang' ? 0x164d42 : character === 'lubu' ? 0x6e2931 : 0x24232c);
+    hand.userData.cuff.material.color.set(character === 'lubu' ? 0xa07a3b : 0x48444d);
+  }
 }
 
 function actor(character) {
@@ -195,8 +251,15 @@ function actor(character) {
   scene.add(group);
   const mixer = new THREE.AnimationMixer(model);
   const clips = new Map(gltf.animations.map(clip => [clip.name.toLowerCase(), clip]));
-  const instance = { group, mixer, clips, active: null, character };
-  mixer.addEventListener('finished', () => play(instance, 'idle'));
+  const morphs = [], bones = new Map();
+  model.traverse(obj => {
+    if (obj.morphTargetDictionary) morphs.push(obj);
+    if (obj.isBone) bones.set(obj.name.toLowerCase(), obj);
+  });
+  const instance = { group, mixer, clips, morphs, bones, active: null, character, motion: null, fading: null, fadeRemaining: 0, hitAt: -Infinity, hitStrength: 0, nextBlink: performance.now() + 2600 + Math.random() * 1800, blinkAt: -Infinity, glance: 0 };
+  mixer.addEventListener('finished', ({ action }) => {
+    if (action === instance.active && !instance.motion) play(instance, 'idle');
+  });
   actors.add(instance);
   play(instance, 'idle');
   return instance;
@@ -206,6 +269,7 @@ function removeActor(instance) {
   scene.remove(instance.group);
   instance.mixer.stopAllAction();
   instance.mixer.uncacheRoot(instance.group.children[0]);
+  instance.group.traverse(obj => { if (obj.isSkinnedMesh) obj.skeleton.dispose(); });
   actors.delete(instance);
 }
 function play(instance, name, duration) {
@@ -214,13 +278,98 @@ function play(instance, name, duration) {
   if (!clip) return;
   const next = instance.mixer.clipAction(clip);
   if (instance.active === next && name === 'idle') return;
+  if (instance.fading && instance.fading !== next) instance.fading.stop();
   next.reset().setEffectiveWeight(1).setEffectiveTimeScale(1);
   next.setLoop(['idle', 'victory'].includes(name) ? THREE.LoopRepeat : THREE.LoopOnce, Infinity);
   next.clampWhenFinished = !['idle', 'victory'].includes(name);
   if (duration) next.setDuration(duration);
-  if (instance.active && instance.active !== next) next.crossFadeFrom(instance.active, .12, false);
+  if (instance.active && instance.active !== next) {
+    instance.fading = instance.active;
+    instance.fadeRemaining = .10;
+    next.crossFadeFrom(instance.active, .10, false);
+  } else instance.fading = null;
   next.play();
   instance.active = next;
+  instance.activeName = name;
+}
+
+function hitStop(event) {
+  if (reducedMotion || event.damage <= 0) return 0;
+  return event.blocked ? 38 : event.action === 'special' ? 88 : event.action === 'heavy' ? 78 : 58;
+}
+function motionTime(motion) {
+  return presentationTime(now() - motion.started, hitStop(motion.event));
+}
+function updateActor(instance, dt, frameTime) {
+  if (instance.pendingHurtAt && frameTime >= instance.pendingHurtAt) {
+    instance.pendingHurtAt = null;
+    if (!instance.guarding && !instance.motion) play(instance, 'hurt', .44);
+  }
+  instance.mixer.update(dt);
+  if (instance.motion && instance.active) {
+    const elapsed = motionTime(instance.motion);
+    if (elapsed < TIMING.slot) {
+      instance.active.time = instance.active.getClip().duration * elapsed / TIMING.slot;
+      instance.active.paused = false;
+      instance.mixer.update(0);
+    } else {
+      instance.motion = null;
+      if (!instance.guarding) play(instance, 'idle');
+    }
+  }
+  if (instance.guarding && room?.stage === 'execute' && instance.activeName === 'guard') {
+    const elapsed = Math.max(0, now() - room.timeline.started - TIMING.lead);
+    instance.active.time = instance.active.getClip().duration * Math.min(TIMING.impact, elapsed * 3.4) / TIMING.slot;
+    instance.active.paused = false;
+    instance.mixer.update(0);
+  }
+  if (instance.fading) {
+    instance.fadeRemaining -= dt;
+    if (instance.fadeRemaining <= 0) { instance.fading.stop(); instance.fading = null; }
+  }
+  updateExpression(instance, dt, frameTime);
+}
+function updateExpression(instance, dt, frameTime) {
+  const fighter = instance === opponent ? room?.players.find(p => p.id !== you) : null;
+  const lowHp = fighter ? 1 - Math.min(1, (shownHp.get(fighter.id) ?? fighter.hp) / (CHARACTERS[fighter.character].hp * .4)) : 0;
+  const sinceHit = Math.max(0, frameTime - instance.hitAt);
+  const anger = Math.exp(-sinceHit / 1800) * instance.hitStrength;
+  const pain = Math.exp(-sinceHit / 380) * instance.hitStrength;
+  if (frameTime >= instance.nextBlink) {
+    instance.blinkAt = frameTime;
+    instance.nextBlink = frameTime + 3100 + Math.random() * 2700;
+  }
+  const blinkPhase = (frameTime - instance.blinkAt) / 150;
+  const blink = blinkPhase >= 0 && blinkPhase <= 1 ? Math.sin(blinkPhase * Math.PI) ** 2 : 0;
+  const override = instance === previewActor ? previewExpression : 'auto';
+  const attacking = ['attack', 'heavy', 'special'].includes(instance.activeName);
+  const expressions = {
+    blink: override === 'auto' ? blink : 0,
+    angry: override === 'angry' ? .9 : override === 'auto' ? Math.min(.85, anger * .65 + lowHp * .35 + (attacking ? .22 : instance.guarding ? .12 : 0)) : 0,
+    hurt: override === 'hurt' ? .82 : override === 'auto' ? Math.max(pain * .8, instance.activeName === 'hurt' ? .6 : 0) : 0,
+    smile: override === 'smile' ? .75 : override === 'auto' && instance.activeName === 'victory' ? .72 : 0,
+  };
+  for (const obj of instance.morphs) {
+    for (const [name, value] of Object.entries(expressions)) {
+      const index = obj.morphTargetDictionary[name];
+      if (index !== undefined) obj.morphTargetInfluences[index] = value;
+    }
+  }
+  if (reducedMotion || !instance.active) return;
+  const head = instance.bones.get('head'), spine = instance.bones.get('spine');
+  const idle = instance.activeName === 'idle';
+  if (instance === opponent && head && idle) {
+    const planning = room?.stage === 'plan';
+    const glanceTarget = planning && Math.floor(frameTime / 2400) % 3 === 0 ? -.055 : 0;
+    instance.glance += (glanceTarget - instance.glance) * (1 - Math.exp(-dt * 4));
+    const targetYaw = THREE.MathUtils.clamp(Math.atan2(camera.position.x - instance.group.position.x, camera.position.z - instance.group.position.z) * .5, -.12, .12);
+    head.rotation.y += targetYaw + instance.glance;
+    head.rotation.x -= lowHp * .035;
+  }
+  if (spine) {
+    if (sinceHit >= (instance.hitHold ?? 0)) spine.rotation.x -= Math.exp(-(sinceHit - (instance.hitHold ?? 0)) / 150) * instance.hitStrength * .06;
+    if (idle && lowHp > 0) spine.rotation.x += lowHp * (.025 + Math.sin(frameTime / 410) * .009);
+  }
 }
 function updatePreview() {
   if (!models.has(selected)) return;
@@ -287,6 +436,8 @@ function receiveRoom(next) {
     removeActor(opponent); opponent = null; opponentId = null;
     if (previewActor) previewActor.group.visible = true;
     shownHp.clear(); logLines.length = 0;
+    weaponMotion = null; freezeUntil = flash = 0;
+    for (const axis of Object.values(recoil)) { axis.position = axis.velocity = 0; }
     yaw = pitch = 0;
     return;
   }
@@ -332,7 +483,7 @@ function receiveRoom(next) {
     if (!previous || previous.stage !== 'plan' || previous.turn !== room.turn || previous.round !== room.round) {
       choice = ACTIONS[choice].cost <= self.energy ? choice : 'strike';
       weaponMotion = null; lastTimeline = null;
-      if (opponent) { opponent.group.position.set(0, 0, -1.8); play(opponent, 'idle'); }
+      if (opponent) { opponent.motion = null; opponent.guarding = false; opponent.group.position.set(0, 0, -1.8); play(opponent, 'idle'); }
     }
     $('phase').textContent = self.locked ? '等待对手' : '选择招式';
     $('turn-hint').textContent = self.locked ? '招式已锁定，等待双方亮招。' : '读懂对手，锁定你的回合。';
@@ -342,6 +493,8 @@ function receiveRoom(next) {
     const identity = `${room.code}:${room.round}:${room.turn}:${room.timeline.started}`;
     if (lastTimeline !== identity) { startedEvents.clear(); hitEvents.clear(); lastTimeline = identity; }
   } else {
+    weaponMotion = null;
+    if (opponent) { opponent.motion = null; opponent.guarding = false; }
     unlock();
     $('countdown').textContent = '—';
     $('turn-hint').textContent = room.stage === 'finished' ? '对战结束，可以再战一场。' : '本局结束，准备下一局。';
@@ -408,7 +561,45 @@ function tone(frequency, duration, type = 'sine', volume = .05, end = frequency)
   osc.frequency.exponentialRampToValueAtTime(Math.max(20, end), audio.currentTime + duration);
   gain.gain.setValueAtTime(volume, audio.currentTime);
   gain.gain.exponentialRampToValueAtTime(.001, audio.currentTime + duration);
-  osc.connect(gain).connect(audio.destination); osc.start(); osc.stop(audio.currentTime + duration);
+  osc.connect(gain).connect(audio.destination); trackSound(osc, [gain]); osc.start(); osc.stop(audio.currentTime + duration);
+}
+const soundSources = new Set();
+let noiseBuffer;
+function trackSound(source, nodes = []) {
+  soundSources.add(source);
+  source.onended = () => { soundSources.delete(source); source.disconnect(); nodes.forEach(node => node.disconnect()); };
+}
+function noise(duration, volume, frequency, delay = 0, highpass = false) {
+  if (!soundEnabled) return;
+  audio ||= new (window.AudioContext || window.webkitAudioContext)();
+  if (audio.state === 'suspended') audio.resume();
+  if (!noiseBuffer) {
+    noiseBuffer = audio.createBuffer(1, Math.ceil(audio.sampleRate * .35), audio.sampleRate);
+    const samples = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < samples.length; i++) samples[i] = Math.random() * 2 - 1;
+  }
+  const source = audio.createBufferSource(), filter = audio.createBiquadFilter(), gain = audio.createGain();
+  const start = audio.currentTime + delay;
+  source.buffer = noiseBuffer;
+  filter.type = highpass ? 'highpass' : 'lowpass';
+  filter.frequency.setValueAtTime(frequency, start);
+  filter.frequency.exponentialRampToValueAtTime(Math.max(120, frequency * .35), start + duration);
+  gain.gain.setValueAtTime(.001, start);
+  gain.gain.linearRampToValueAtTime(volume, start + .004);
+  gain.gain.exponentialRampToValueAtTime(.001, start + duration);
+  source.connect(filter).connect(gain).connect(audio.destination);
+  trackSound(source, [filter, gain]); source.start(start); source.stop(start + duration);
+}
+function hitSound(event) {
+  if (event.blocked) {
+    noise(.08, .14, 3700, 0, true);
+    tone(740, .12, 'triangle', .042, 380);
+    tone(1120, .085, 'sine', .028, 800);
+  } else {
+    noise(.055, event.action === 'strike' ? .13 : .19, 2100);
+    tone(event.action === 'special' ? 92 : 125, .19, 'sine', .15, 36);
+    if (event.action !== 'strike') noise(.14, .055, 850);
+  }
 }
 function impact(event) {
   if (event.damage <= 0) return;
@@ -416,11 +607,23 @@ function impact(event) {
   shownHp.set(event.target, Math.max(0, (shownHp.get(event.target) ?? 0) - event.damage));
   updateHealth();
   if (!reducedMotion) {
-    shake = localHit ? .10 : .055;
-    freezeUntil = performance.now() + 65;
-    flash = localHit ? .30 : .06;
+    const power = event.blocked ? .45 : event.action === 'special' ? 1.3 : event.action === 'heavy' ? 1.1 : .8;
+    recoil.x.position += (localHit ? -.018 : .010) * power;
+    recoil.y.position += (localHit ? -.035 : .008) * power;
+    recoil.z.position += (localHit ? .09 : .018) * power;
+    recoil.roll.position += (localHit ? -.018 : .008) * power;
+    recoil.z.velocity += (localHit ? .3 : .05) * power;
+    const lateness = Math.max(0, now() - room.timeline.started - event.hit);
+    freezeStartedAt = performance.now();
+    freezeUntil = freezeStartedAt + Math.max(0, hitStop(event) - lateness);
+    flash = localHit ? .19 : .035;
   }
-  if (!localHit && opponent) play(opponent, 'hurt');
+  if (!localHit && opponent) {
+    opponent.hitAt = performance.now();
+    opponent.hitHold = hitStop(event);
+    opponent.hitStrength = event.blocked ? .35 : event.action === 'special' ? 1 : .75;
+    if (!event.blocked) opponent.pendingHurtAt = freezeUntil || performance.now();
+  }
   const label = $('impact-label');
   label.textContent = `${event.blocked ? '格挡 · ' : event.action === 'special' ? '明星时刻 · ' : ''}−${event.damage}`;
   label.className = `impact-label show${localHit ? ' hurt' : ''}`;
@@ -430,63 +633,133 @@ function impact(event) {
   logLines.length = Math.min(logLines.length, 4);
   const log = $('battle-log'); log.replaceChildren();
   logLines.forEach(line => { const div = document.createElement('div'); div.textContent = line; log.append(div); });
-  tone(event.blocked ? 540 : 150, .15, 'triangle', .1, event.blocked ? 170 : 40);
-  if (event.action === 'special') tone(75, .3, 'sawtooth', .035, 28);
-  spawnSparks(localHit ? new THREE.Vector3(0, 1.4, 2.5) : new THREE.Vector3(0, 1.4, -.8), event.blocked ? 0x6edbc9 : 0xc5ff74);
+  hitSound(event);
+  const contact = localHit && opponent ? WEAPON_CONTACT[opponent.character][event.action] : null;
+  const position = contact
+    ? new THREE.Vector3(...contact).add(opponent.group.position)
+    : new THREE.Vector3(.06, event.blocked ? 1.62 : 1.48, (opponent?.group.position.z ?? -1.8) + .30);
+  spawnImpact(position, event);
 }
-const sparkGeometry = new THREE.SphereGeometry(.025, 4, 3);
-const sparks = [];
-function spawnSparks(position, color) {
+const streakGeometry = new THREE.BoxGeometry(.007, .007, 1);
+const impactRingGeometry = new THREE.TorusGeometry(.115, .005, 6, 48);
+const effects = [];
+function spawnImpact(position, event) {
   if (reducedMotion) return;
-  for (let i = 0; i < 12; i++) {
-    const spark = new THREE.Mesh(sparkGeometry, new THREE.MeshBasicMaterial({ color, transparent: true }));
-    spark.position.copy(position);
-    const velocity = new THREE.Vector3((Math.random() - .5) * 3, Math.random() * 2 + .4, (Math.random() - .5) * 2);
-    scene.add(spark); sparks.push({ spark, velocity, life: .5 });
+  const attacker = room.players.find(p => p.id === event.actor)?.character;
+  const color = event.blocked ? 0x91cdda : attacker === 'wang' ? 0xc4e4d8 : 0xffcf87;
+  const size = Math.min(1, camera.position.distanceTo(position) / 1.7);
+  const material = () => new THREE.MeshBasicMaterial({ color, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+  const ring = new THREE.Mesh(impactRingGeometry, material());
+  ring.position.copy(position); ring.quaternion.copy(camera.quaternion); ring.scale.setScalar(size);
+  scene.add(ring); effects.push({ object: ring, age: 0, duration: event.blocked ? .22 : .16, kind: 'ring', size });
+  const count = event.blocked ? 8 : 11;
+  for (let i = 0; i < count; i++) {
+    const angle = i * Math.PI * 2 / count + (event.blocked ? .15 : .4);
+    const direction = new THREE.Vector3(Math.cos(angle), Math.sin(angle), .25 * Math.sin(i * 2.1));
+    const streak = new THREE.Mesh(streakGeometry, material());
+    streak.position.copy(position);
+    streak.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), direction.clone().normalize());
+    streak.scale.set(size, size, (.045 + i % 3 * .025) * size);
+    scene.add(streak);
+    effects.push({ object: streak, velocity: direction.multiplyScalar((event.blocked ? 1.5 : 2) * size), age: 0, duration: .14 + i % 3 * .025, kind: 'streak' });
+  }
+  if (attacker === 'lubu' || attacker === 'wang' && event.action === 'special') {
+    const points = [];
+    for (let i = 0; i <= 16; i++) {
+      const angle = -.7 + i / 16 * 1.4;
+      points.push(new THREE.Vector3(Math.sin(angle) * .55, (Math.cos(angle) - 1) * .55, 0));
+    }
+    const slash = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+    slash.position.copy(position); slash.quaternion.copy(camera.quaternion); slash.rotateZ(attacker === 'lubu' ? -.65 : .1); slash.scale.setScalar(size);
+    scene.add(slash); effects.push({ object: slash, age: 0, duration: .14, kind: 'slash', disposableGeometry: true });
   }
 }
 
 function timeline() {
   if (room?.stage !== 'execute' || !room.timeline) return;
   const elapsed = now() - room.timeline.started;
+  const defender = room.timeline.events.find(event => event.actor !== you && event.action === 'guard');
+  if (opponent && defender && !opponent.guarding) {
+    opponent.guarding = true; opponent.motion = null;
+    play(opponent, 'guard', TIMING.slot / 1000);
+  }
   room.timeline.events.forEach((event, index) => {
     if (elapsed >= event.start && !startedEvents.has(index)) {
       startedEvents.add(index);
-      if (event.actor === you) weaponMotion = { started: room.timeline.started + event.start, action: event.action };
-      else if (opponent) play(opponent, event.action === 'strike' ? 'attack' : event.action, TIMING.slot / 1000);
-      if (event.action !== 'guard') tone(220, .16, 'sine', .02, 360);
+      const motion = { started: room.timeline.started + event.start, event, action: event.action };
+      if (event.actor === you) weaponMotion = motion;
+      else if (opponent && event.action !== 'guard') {
+        opponent.motion = motion;
+        play(opponent, event.action === 'strike' ? 'attack' : event.action, TIMING.slot / 1000);
+      }
+      if (event.action !== 'guard') {
+        const character = room.players.find(p => p.id === event.actor)?.character;
+        const release = event.action === 'strike' ? 365 : 445;
+        noise(character === 'lubu' ? .21 : .16, .03, character === 'wang' ? 1600 : 950, Math.max(0, release - (elapsed - event.start)) / 1000);
+      }
     }
-    if (elapsed >= event.hit && !hitEvents.has(index)) { hitEvents.add(index); impact(event); }
   });
   if (opponent) {
-    const attack = room.timeline.events.find(e => e.actor !== you && e.action !== 'guard');
-    let lunge = 0;
-    if (attack) {
-      const t = (elapsed - attack.start) / TIMING.slot;
-      if (t >= 0 && t <= 1) lunge = Math.exp(-(((t - .42) / .19) ** 2)) * (attack.action === 'special' ? 2.4 : 1.9);
-    }
-    opponent.group.position.z = -1.8 + lunge;
+    const pose = opponent.motion ? attackEnvelope(motionTime(opponent.motion), opponent.motion.action) : { extension: 0, windup: 0 };
+    const reach = opponentApproach(opponent.character, opponent.motion?.action, opponent.motion?.event.blocked);
+    opponent.group.position.z = -1.8 + pose.extension * reach - pose.windup * .12;
+    opponent.group.position.x = 0;
   }
+  room.timeline.events.forEach((event, index) => {
+    if (elapsed >= event.hit && !hitEvents.has(index)) { hitEvents.add(index); impact(event); }
+  });
 }
-function animateHands(dt, time) {
-  let drive = 0, ready = 0, guard = 0;
+function animateHands(time) {
+  let drive = 0, ready = 0, follow = 0, guard = 0;
+  let action = 'strike';
   if (weaponMotion) {
-    const t = (now() - weaponMotion.started) / TIMING.slot;
-    if (t > 1) weaponMotion = null;
-    else if (t >= 0) {
-      drive = Math.exp(-(((t - .42) / .13) ** 2));
-      ready = Math.exp(-(((t - .18) / .10) ** 2));
-      if (weaponMotion.action === 'guard') { guard = Math.sin(t * Math.PI); drive = ready = 0; }
-    }
+    const elapsed = motionTime(weaponMotion);
+    action = weaponMotion.action;
+    if (elapsed >= TIMING.slot) weaponMotion = null;
+    else ({ extension: drive, windup: ready, follow, guard } = attackEnvelope(elapsed, action));
+  }
+  if (room?.stage === 'execute' && room.timeline.events.some(event => event.actor === you && event.action === 'guard')) {
+    guard = Math.min(1, Math.max(0, now() - room.timeline.started - TIMING.lead) / 180);
   }
   hands.forEach((hand, index) => {
     const sign = index === 0 ? -1 : 1;
-    hand.position.x = sign * .48 - sign * guard * .24;
-    hand.position.y = -.32 + (reducedMotion ? 0 : Math.sin(time * 1.8 + index) * .009) + guard * .17 + (index === 1 ? ready * -.07 + drive * .05 : 0);
-    hand.position.z = -.90 + (index === 1 ? ready * .15 - drive * .37 : -drive * .08) - guard * .03;
-    hand.rotation.x = index === 1 ? drive * -.4 + ready * .2 : 0;
-    hand.rotation.z = sign * -.28 - sign * guard * .7;
+    const bob = reducedMotion || weaponMotion || guard ? 0 : Math.sin(time * 1.3 + index * .6) * .003;
+    hand.position.set(sign * .40 - sign * guard * .18, -.39 + bob + guard * .26, -1.10 + guard * .22);
+    hand.rotation.set(guard * .65, 0, sign * -.20 - sign * guard * .55);
+    if (index === 0) {
+      hand.position.y += drive * .025;
+      hand.position.z -= drive * (viewCharacter === 'lubu' ? .8 : .12);
+      if (viewCharacter === 'lubu') hand.position.x += drive * .18;
+      return;
+    }
+    hand.position.z += ready * .18 - drive * (reducedMotion ? 3.7 : 1.5);
+    if (viewCharacter === 'ikun') {
+      hand.position.x += ready * .06 - drive * .32;
+      hand.position.y += ready * (action === 'special' ? .68 : -.045) + drive * .19 - follow * .12;
+      hand.rotation.x += ready * .24 - drive * .18;
+      hand.rotation.y += drive * -.15;
+      hand.rotation.z += ready * -.15 + drive * .30;
+      if (action === 'heavy') {
+        hand.position.x += ready * .12 - follow * .10;
+        hand.position.y += ready * .18;
+        hand.rotation.y += ready * -.35 + drive * .25;
+        hand.rotation.z += drive * .22;
+      }
+    } else if (viewCharacter === 'wang') {
+      hand.position.x += ready * .10 - drive * .48 - follow * .10;
+      hand.position.y += ready * .12 + drive * .10;
+      hand.rotation.y += ready * -.6 + drive * .7;
+      hand.rotation.z += ready * -.7 + drive * 1.15 + follow * .15;
+      if (action === 'special') hands[0].position.y += drive * .16;
+    } else {
+      hand.position.x += ready * .08 - drive * .40 - follow * .18;
+      hand.position.y += ready * (action === 'heavy' ? .50 : .24) + drive * .06 - follow * .16;
+      hand.rotation.x += ready * -.15 - drive * .35;
+      hand.rotation.z += ready * -.9 + drive * .65 + follow * .35;
+      hand.rotation.y += drive * .15;
+    }
   });
+  return { drive, ready, guard, follow, action };
 }
 
 function unlock() { if (document.pointerLockElement) document.exitPointerLock(); }
@@ -538,9 +811,24 @@ $('rematch').addEventListener('click', () => send({ type: 'rematch' }));
 $('commit').addEventListener('click', commit);
 document.querySelectorAll('.leave').forEach(button => button.addEventListener('click', () => { unlock(); send({ type: 'leave' }); }));
 document.querySelectorAll('.character-card').forEach(button => button.addEventListener('click', () => selectCharacter(button.dataset.character)));
-$('preview-move').addEventListener('click', () => play(previewActor, 'special', 1.45));
+function previewMove() {
+  const action = $('preview-action')?.value || 'special';
+  play(previewActor, action, ['idle', 'victory'].includes(action) ? undefined : TIMING.slot / 1000);
+}
+$('preview-move').addEventListener('click', previewMove);
+$('preview-action')?.addEventListener('change', previewMove);
+$('preview-expression')?.addEventListener('change', event => { previewExpression = event.target.value; });
+$('preview-closeup')?.addEventListener('click', () => {
+  previewCloseup = !previewCloseup;
+  $('preview-closeup').textContent = previewCloseup ? '查看全身' : '查看表情';
+  $('preview-closeup').setAttribute('aria-pressed', String(previewCloseup));
+});
 $('sound').addEventListener('click', () => {
   soundEnabled = !soundEnabled;
+  if (!soundEnabled) {
+    for (const source of soundSources) { try { source.stop(); } catch {} }
+    soundSources.clear();
+  }
   $('sound').textContent = `声音 ${soundEnabled ? '开' : '关'}`;
   $('sound').setAttribute('aria-label', soundEnabled ? '关闭声音' : '开启声音');
   $('sound').setAttribute('aria-pressed', String(soundEnabled));
@@ -590,22 +878,31 @@ connect();
 setInterval(() => { if (connected) send({ type: 'ping', sent: Date.now() }); }, 5000);
 
 let previousFrame = performance.now();
+let idleTime = 0;
 function render(frameTime) {
   requestAnimationFrame(render);
   const dt = Math.min((frameTime - previousFrame) / 1000, .05); previousFrame = frameTime;
   if (document.hidden) return;
-  const time = frameTime / 1000;
   timeline();
   const animationDt = frameTime < freezeUntil ? 0 : dt;
-  for (const instance of actors) instance.mixer.update(animationDt);
+  idleTime += animationDt;
+  const expressionTime = frameTime < freezeUntil ? freezeStartedAt : frameTime;
+  for (const instance of actors) updateActor(instance, animationDt, expressionTime);
   if (previewActor) previewActor.group.rotation.y = previewAngle;
-  for (let i = sparks.length - 1; i >= 0; i--) {
-    const item = sparks[i]; item.life -= dt;
-    if (item.life <= 0) { scene.remove(item.spark); item.spark.material.dispose(); sparks.splice(i, 1); continue; }
-    item.spark.position.addScaledVector(item.velocity, dt);
-    item.velocity.y -= dt * 6; item.spark.material.opacity = item.life * 2;
+  for (let i = effects.length - 1; i >= 0; i--) {
+    const item = effects[i]; item.age += animationDt;
+    if (item.age >= item.duration) {
+      scene.remove(item.object); item.object.material.dispose();
+      if (item.disposableGeometry) item.object.geometry.dispose();
+      effects.splice(i, 1); continue;
+    }
+    const progress = item.age / item.duration;
+    if (item.velocity) item.object.position.addScaledVector(item.velocity, animationDt);
+    if (item.kind === 'ring') item.object.scale.setScalar(item.size * (1 + progress * 1.4));
+    item.object.material.opacity = (1 - progress) ** 2;
   }
-  shake *= Math.exp(-dt * 12); flash *= Math.exp(-dt * 10);
+  for (const axis of Object.keys(recoil)) recoil[axis] = dampedSpring(recoil[axis].position, recoil[axis].velocity, animationDt);
+  flash *= Math.exp(-dt * 14);
   $('flash').style.opacity = flash;
   if (room && room.deadline) {
     const seconds = Math.max(0, (room.deadline - now()) / 1000);
@@ -621,12 +918,18 @@ function render(frameTime) {
     if (keys.has('ArrowRight')) yaw = Math.max(-.9, yaw - dt);
     if (keys.has('ArrowUp')) pitch = Math.min(.5, pitch + dt);
     if (keys.has('ArrowDown')) pitch = Math.max(-.5, pitch - dt);
-    // shortcut: fixed positions suit this 1v1 duel; add server-owned movement for free-roaming maps.
-    camera.position.set(Math.sin(time * 83) * shake, 1.72 + Math.cos(time * 97) * shake * .5, 3.4);
-    camera.rotation.order = 'YXZ'; camera.rotation.set(pitch, yaw, Math.sin(time * 56) * shake * .2);
-    camera.fov = 55 + shake * 15; camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
-    animateHands(animationDt, time);
+    const handPose = animateHands(idleTime);
+    // shortcut: this dash is presentation only; add server-owned movement for free-roaming maps.
+    const dash = reducedMotion ? 0 : handPose.drive * 2.2 - handPose.ready * .045;
+    camera.position.set(recoil.x.position, 1.72 + recoil.y.position, 3.4 - dash + recoil.z.position);
+    const incoming = opponent?.motion ? attackEnvelope(motionTime(opponent.motion), opponent.motion.action).extension : 0;
+    const focus = reducedMotion ? 0 : Math.max(handPose.drive, incoming);
+    camera.rotation.order = 'YXZ'; camera.rotation.set(pitch * (1 - focus), yaw * (1 - focus), recoil.roll.position);
+    camera.fov = 55 + (reducedMotion ? 0 : handPose.drive * 1.5); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
     renderer.render(scene, camera);
+    viewCamera.aspect = camera.aspect; viewCamera.fov = camera.fov; viewCamera.updateProjectionMatrix();
+    renderer.clearDepth();
+    renderer.render(viewmodelScene, viewCamera);
   } else {
     viewmodel.visible = false;
     podium.visible = podiumRing.visible = true;
@@ -638,8 +941,8 @@ function render(frameTime) {
       const caption = document.querySelector('.character-caption').getBoundingClientRect();
       box = { left: roster.left, top: cards.bottom + 5, width: roster.width, height: Math.max(50, caption.top - cards.bottom - 5) };
     } else box = { left: innerWidth * .50, top: 145, width: innerWidth * .48, height: Math.max(200, innerHeight - 230) };
-    previewCamera.position.set(2.8, 1.8, 5.7);
-    previewCamera.lookAt(0, 1.36, 0);
+    previewCamera.position.set(previewCloseup ? .35 : 2.2, previewCloseup ? 2.03 : 1.85, previewCloseup ? 2.15 : 4.8);
+    previewCamera.lookAt(0, previewCloseup ? 1.98 : 1.36, 0);
     previewCamera.aspect = box.width / box.height; previewCamera.updateProjectionMatrix();
     renderer.setViewport(box.left, innerHeight - box.top - box.height, box.width, box.height);
     renderer.setScissor(box.left, innerHeight - box.top - box.height, box.width, box.height);

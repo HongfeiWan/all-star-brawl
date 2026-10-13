@@ -16,7 +16,7 @@
   <div id="flash" aria-hidden="true"></div>
   <header class="topbar">
     <a class="brand" href="/" aria-label="回到首页"><span class="brand-mark">A<span>✦</span></span><span>ALL-STAR<br><b>BRAWL</b></span></a>
-    <div class="top-meta"><span class="build">PROTOTYPE / 001</span><span id="network" class="network">连接中</span><button id="sound" class="icon-button" aria-label="开启声音" aria-pressed="false">声音 关</button></div>
+    <div class="top-meta"><span class="build">PROTOTYPE / 002</span><span id="network" class="network">连接中</span><button id="sound" class="icon-button" aria-label="开启声音" aria-pressed="false">声音 关</button></div>
   </header>
 
   <main id="home" class="home">
@@ -41,8 +41,13 @@
         <button class="character-card" data-character="wang" aria-pressed="false"><span class="card-num">02</span><strong>王司徒</strong><span>语言艺术家</span><i class="card-dot"></i></button>
         <button class="character-card" data-character="lubu" aria-pressed="false"><span class="card-num">03</span><strong>吕布</strong><span>无双猛将</span><i class="card-dot"></i></button>
       </div>
-      <div class="character-caption"><div><p class="eyebrow">SIGNATURE MOVE</p><h2 id="special-name">节奏暴扣</h2><p id="character-description">银发、背带与篮球。用一记暴扣，把节奏打进对手的回合。</p></div><button id="preview-move" class="round-button" aria-label="预览角色绝招">▶</button></div>
-      <div class="preview-footer"><span>原创卡通模型 / 可编辑骨骼动作</span><span>拖动查看 ↔</span></div>
+      <div class="character-caption"><div><p class="eyebrow">SIGNATURE MOVE</p><h2 id="special-name">节奏暴扣</h2><p id="character-description">银发、背带与篮球。用一记暴扣，把节奏打进对手的回合。</p></div><button id="preview-move" class="round-button" aria-label="播放角色动作">▶</button></div>
+      <div class="preview-tools">
+        <label>动作 <select id="preview-action" aria-label="预览动作"><option value="idle">待机</option><option value="attack">快攻</option><option value="heavy">重击</option><option value="guard">格挡</option><option value="special" selected>绝招</option><option value="hurt">受击</option><option value="victory">庆祝</option></select></label>
+        <label>表情 <select id="preview-expression" aria-label="预览表情"><option value="auto">自然</option><option value="angry">生气</option><option value="hurt">疼痛</option><option value="smile">开心</option></select></label>
+        <button id="preview-closeup" class="icon-button" aria-pressed="false">查看表情</button>
+      </div>
+      <div class="preview-footer"><span>原创角色 / 表情与骨骼动作</span><span>拖动查看 ↔</span></div>
     </section>
   </main>
 

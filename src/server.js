@@ -19,7 +19,7 @@ export function lanAddresses(port) {
 function staticFile(url) {
   let pathname;
   try { pathname = decodeURIComponent(new URL(url, 'http://arena.local').pathname); } catch { return null; }
-  if (pathname === '/shared/catalog.js') return path.join(root, 'shared/catalog.js');
+  if (['/shared/catalog.js', '/shared/presentation.js'].includes(pathname)) return path.join(root, pathname.slice(1));
   const vendor = pathname.startsWith('/vendor/');
   const base = path.join(root, vendor ? 'node_modules/three' : 'public');
   const suffix = vendor ? pathname.slice(8) : (pathname === '/' ? 'index.html' : pathname.slice(1));

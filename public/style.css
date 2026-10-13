@@ -5,3 +5,40 @@
 @media(max-width:650px){.topbar{height:80px}.brand{font-size:8px}.brand b{font-size:14px}.brand-mark{font-size:30px}.top-meta{font-size:9px;gap:8px}.home{display:flex;flex-direction:column;padding-top:16px}.intro{max-width:none}h1{font-size:46px}.lede{margin-bottom:20px}.features{font-size:9px}.entry-panel{max-width:none}.roster{padding:28px 0 0;min-height:570px}.character-caption p:last-child{max-width:260px}.home-footer{position:relative;font-size:8px}.home-footer>span:nth-child(2){display:none}.combat-top{grid-template-columns:1fr 90px 1fr;gap:12px;padding-inline:4%}.fighter-label{font-size:10px;flex-direction:column;gap:5px}.health-caption{font-size:8px;flex-direction:column;gap:4px}.round-info strong{font-size:12px}.round-info>span{font-size:22px}.view-hint{left:4%;top:100px}.view-hint>span{display:none}.battle-log{right:4%;top:115px;width:150px;font-size:8px}.combat-bottom{bottom:16px;width:94%}.actions{gap:5px}.action{padding:10px 8px}.action strong{font-size:15px}.action .action-label{font-size:8px}.action .cost{font-size:8px;right:6px;top:14px}.turn-caption{gap:12px}.turn-caption p{font-size:10px}.combat-footer>span{max-width:160px;font-size:8px;line-height:1.6}.combat-footer .primary{font-size:10px;padding:12px 14px}.lobby{padding:24px;margin:30px 4%}.lobby h1{font-size:36px}.room-ticket{gap:10px}.room-ticket strong{font-size:23px;letter-spacing:3px}.room-ticket button{padding:10px}.impact-label{font-size:24px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 .home{pointer-events:none}.intro,.roster button{pointer-events:auto}
+
+.preview-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  pointer-events: auto;
+}
+.preview-tools label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  color: #aeb7c9;
+}
+.preview-tools select {
+  font: inherit;
+  color: #e4e8ef;
+  border: 1px solid #ffffff24;
+  background: #1b2232;
+  border-radius: 5px;
+  padding: 7px 9px;
+  cursor: pointer;
+  min-width: 70px;
+}
+.preview-tools select:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+.preview-tools button {
+  margin-left: auto;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .preview-tools { gap: 7px; flex-wrap: wrap; }
+  .preview-tools select { padding-inline: 5px; min-width: 61px; }
+}

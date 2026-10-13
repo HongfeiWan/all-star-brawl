@@ -91,15 +91,23 @@ test('reject malformed input, full rooms, forged damage and inaccessible server 
   assert.match((await c.wait(m => m.type === 'error')).message, /已满/);
   a.send({ type: 'damage', amount: 9999 }); await a.wait(m => m.type === 'error');
   for (const filename of ['/src/server.js', '/art/all-stars.blend', '/.env', '/assets/%2e%2e/%2e%2e/src/server.js']) {
-    assert.equal((await fetch(app.url + filename)).status, 404, filename);
+    const missing = await fetch(app.url + filename);
+    assert.equal(missing.status, 404, filename);
+    await missing.text();
   }
   const response = await fetch(app.url);
   assert.equal(response.status, 200);
   assert.match(response.headers.get('content-security-policy'), /frame-ancestors 'none'/);
+  await response.text();
   const asset = await fetch(app.url + '/assets/ikun.glb');
   assert.equal(asset.headers.get('content-type'), 'model/gltf-binary');
+  await asset.arrayBuffer();
   const module = await fetch(app.url + '/vendor/build/three.module.js');
   assert.equal(module.status, 200);
+  await module.text();
+  const presentation = await fetch(app.url + '/shared/presentation.js');
+  assert.equal(presentation.status, 200);
+  assert.match(await presentation.text(), /export function presentationTime/);
 });
 
 test('cross-origin WebSocket attempts are refused', async t => {
