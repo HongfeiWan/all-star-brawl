@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+.env
+*.log
+*.blend1
+output/
+coverage/
+.playwright-cli/

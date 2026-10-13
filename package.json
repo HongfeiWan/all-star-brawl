@@ -1,0 +1,15 @@
+{
+  "name": "all-star-brawl",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A first-person, turn-based meme-character arena for LAN duels.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "check": "node --check src/server.js && node --check public/game.js && node --test"
+  },
+  "dependencies": { "three": "0.186.1", "ws": "8.22.0" }
+}

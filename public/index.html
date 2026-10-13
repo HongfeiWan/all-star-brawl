@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131c">
+  <title>All-Star Brawl · 全明星大乱斗</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script type="importmap">{"imports":{"three":"/vendor/build/three.module.js","three/addons/":"/vendor/examples/jsm/"}}</script>
+  <script type="module" src="/game.js"></script>
+</head>
+<body>
+  <canvas id="arena" aria-label="三维角色预览与第一人称战斗场景"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div id="flash" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="回到首页"><span class="brand-mark">A<span>✦</span></span><span>ALL-STAR<br><b>BRAWL</b></span></a>
+    <div class="top-meta"><span class="build">PROTOTYPE / 001</span><span id="network" class="network">连接中</span><button id="sound" class="icon-button" aria-label="开启声音" aria-pressed="false">声音 关</button></div>
+  </header>
+
+  <main id="home" class="home">
+    <section class="intro">
+      <p class="eyebrow"><span></span> LOCAL ARENA · 全明星大乱斗</p>
+      <h1>名场面，<br>由你<span>出招。</span></h1>
+      <p class="lede">熟悉的梗，不一样的擂台。<br>第一人称的临场感，每个回合的心理战。</p>
+      <div class="features"><span>01 / 第一人称</span><span>02 / 回合博弈</span><span>03 / 局域网对战</span></div>
+      <form id="entry-form" class="entry-panel">
+        <label for="nickname">你的擂台名</label>
+        <input id="nickname" name="nickname" maxlength="20" placeholder="给对手留下一个名字" value="头号玩家" autocomplete="nickname" required>
+        <div class="entry-buttons"><button id="create" type="submit" class="primary">创建局域网房间 <span>↗</span></button><button id="practice" type="button" class="secondary">先来一场人机</button></div>
+        <div class="join-row"><input id="room-code" name="code" maxlength="6" placeholder="6 位房间码" aria-label="6 位房间码" autocapitalize="characters" autocomplete="off"><button id="join" type="button">加入房间 →</button></div>
+        <p class="micro">同一 Wi-Fi · 一台电脑开服 · 好友浏览器直接加入</p>
+      </form>
+    </section>
+
+    <section class="roster" aria-label="选择角色">
+      <div class="roster-heading"><p class="eyebrow">CHOOSE YOUR STAR</p><span id="model-status">角色加载中</span></div>
+      <div class="character-cards" role="group" aria-label="角色列表">
+        <button class="character-card selected" data-character="ikun" aria-pressed="true"><span class="card-num">01</span><strong>IKUN</strong><span>节奏练习生</span><i class="card-dot"></i></button>
+        <button class="character-card" data-character="wang" aria-pressed="false"><span class="card-num">02</span><strong>王司徒</strong><span>语言艺术家</span><i class="card-dot"></i></button>
+        <button class="character-card" data-character="lubu" aria-pressed="false"><span class="card-num">03</span><strong>吕布</strong><span>无双猛将</span><i class="card-dot"></i></button>
+      </div>
+      <div class="character-caption"><div><p class="eyebrow">SIGNATURE MOVE</p><h2 id="special-name">节奏暴扣</h2><p id="character-description">银发、背带与篮球。用一记暴扣，把节奏打进对手的回合。</p></div><button id="preview-move" class="round-button" aria-label="预览角色绝招">▶</button></div>
+      <div class="preview-footer"><span>原创卡通模型 / 可编辑骨骼动作</span><span>拖动查看 ↔</span></div>
+    </section>
+  </main>
+
+  <section id="lobby" class="lobby panel" hidden aria-label="房间准备">
+    <p class="eyebrow">YOUR LOCAL ARENA</p><h1>好友入场，<br><span>好戏开场。</span></h1>
+    <p>把主机地址和房间码发给同一局域网的好友。</p>
+    <div class="room-ticket"><span>房间码</span><strong id="lobby-code">------</strong><button id="copy" class="secondary">复制邀请</button></div>
+    <div id="lan-urls" class="lan-urls"></div>
+    <div id="lobby-players" class="lobby-players"></div>
+    <p id="lobby-note" class="micro" aria-live="polite">等待对手加入…</p>
+    <div class="entry-buttons"><button id="start" class="primary" disabled>等待对手</button><button class="secondary leave">离开房间</button></div>
+  </section>
+
+  <section id="hud" class="hud" hidden aria-label="对战控制">
+    <div class="combat-top"><div class="fighter self"><div class="fighter-label"><strong id="self-name"></strong><span id="self-score"></span></div><div class="health-track"><div id="self-health"></div></div><div class="health-caption"><span id="self-hp"></span><span id="energy"></span></div></div><div class="round-info"><p id="round-number">ROUND 01</p><strong id="phase">选择招式</strong><span id="countdown">8.0</span></div><div class="fighter enemy"><div class="fighter-label"><strong id="enemy-name"></strong><span id="enemy-score"></span></div><div class="health-track"><div id="enemy-health"></div></div><div class="health-caption"><span id="enemy-hp"></span><span id="enemy-ready"></span></div></div></div>
+    <div class="view-hint"><span>拖动视角 / 方向键</span><button id="focus" class="icon-button">锁定视角</button><button class="icon-button leave">离开</button></div>
+    <div class="crosshair" aria-hidden="true"><i></i><i></i></div>
+    <div id="impact-label" class="impact-label" aria-live="polite"></div>
+    <div class="combat-bottom"><div class="turn-caption"><span id="turn-number">TURN 01</span><p id="turn-hint">选择一招，锁定你的回合。</p><span id="latency">LAN</span></div><div id="actions" class="actions" role="group" aria-label="战斗招式"></div><div class="combat-footer"><span>1–4 选招 · Enter 锁定 · Esc 释放鼠标</span><button id="commit" class="primary">锁定招式 →</button></div></div>
+    <div id="battle-log" class="battle-log" aria-live="polite"></div>
+  </section>
+
+  <section id="result" class="result panel" hidden aria-live="polite"><p class="eyebrow" id="result-kicker">ROUND COMPLETE</p><h1 id="result-title">回合结束</h1><p id="result-detail"></p><div class="entry-buttons"><button id="rematch" class="primary">再战一场 →</button><button class="secondary leave">回到大厅</button></div></section>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <footer id="home-footer" class="home-footer"><span>ALL-STAR BRAWL © 2026</span><span>不同次元，同一擂台。 <i>✦</i></span><button id="help" class="text-button">怎么玩 ↗</button></footer>
+  <dialog id="help-dialog"><button id="close-help" class="icon-button close-help" aria-label="关闭玩法说明">×</button><p class="eyebrow">HOW TO BRAWL</p><h2>每一回合，都有选择。</h2><p>双方在 8 秒内各选一招并锁定；先锁定的人看不到对方选择。时间用尽则自动格挡。随后按时间轴依次播放动作，同时结算双方伤害。</p><ul><li>快攻：18 伤害，积攒 1 气势。</li><li>重击：30 伤害，消耗 1 气势；对格挡仍造成 24 伤害。</li><li>格挡：减伤 70%，积攒 1 气势。</li><li>绝招：消耗 2 气势，释放角色专属攻击。</li></ul><p>每局最多 20 回合；超时比较剩余生命百分比。先赢两局获胜。双 KO 或生命比例相同则平局重开该局。对战为固定站位的第一人称擂台。</p><p class="micro">Chrome / Edge 推荐。主机首次安装需联网，之后同局域网对战无需外部服务。</p></dialog>
+  <noscript>请开启 JavaScript 以运行 All-Star Brawl。</noscript>
+</body>
+</html>
