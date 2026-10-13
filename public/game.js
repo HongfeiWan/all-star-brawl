@@ -440,7 +440,7 @@ async function loadCharacter(id) {
     gltf.scene.traverse(obj => {
       if (obj.isMesh && obj.material.name?.startsWith('Photo face · ')) {
         const previous = obj.material;
-        obj.material = new THREE.MeshBasicMaterial({ map: previous.map, vertexColors: previous.vertexColors,
+        obj.material = new THREE.MeshBasicMaterial({ name: previous.name, map: previous.map, vertexColors: previous.vertexColors,
           transparent: true, depthWrite: false, toneMapped: false });
         previous.dispose();
       }
